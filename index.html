@@ -25,8 +25,9 @@
   --font-d:'Amiri','Traditional Arabic',serif;
   --font-b:'IBM Plex Arabic','Segoe UI',sans-serif;
   --sidebar-w:260px;
+  --dt-bar-h:30px;
   --header-h:64px;
-  --mgr-bar-h:80px;
+  --mgr-bar-h:100px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -52,7 +53,7 @@ img{max-width:100%;display:block}
   border-bottom:1px solid rgba(201,168,76,.2);
   display:flex;align-items:center;
   padding:0 1.5rem;gap:1rem;
-  position:fixed;top:0;right:0;left:0;z-index:200;
+  position:fixed;top:var(--dt-bar-h);right:0;left:0;z-index:200;
 }
 .h-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none}
 .h-logo-badge{
@@ -104,8 +105,8 @@ img{max-width:100%;display:block}
 ══════════════════════════════════════════ */
 .page{
   display:none;
-  min-height:calc(100vh - var(--header-h) - var(--mgr-bar-h));
-  margin-top:calc(var(--header-h) + var(--mgr-bar-h));
+  min-height:calc(100vh - var(--dt-bar-h) - var(--header-h) - var(--mgr-bar-h));
+  margin-top:calc(var(--dt-bar-h) + var(--header-h) + var(--mgr-bar-h));
 }
 .page.active{display:block}
 
@@ -411,8 +412,8 @@ img{max-width:100%;display:block}
   background:rgba(13,27,42,.95);
   border-left:1px solid rgba(201,168,76,.12);
   padding:1.5rem 1.25rem;
-  position:sticky;top:var(--header-h);
-  height:calc(100vh - var(--header-h));overflow-y:auto;
+  position:sticky;top:calc(var(--dt-bar-h) + var(--header-h));
+  height:calc(100vh - var(--dt-bar-h) - var(--header-h));overflow-y:auto;
 }
 .sidebar-title{font-family:var(--font-d);font-size:1rem;color:var(--gold);margin-bottom:1rem}
 .sidebar-section{margin-bottom:1.5rem}
@@ -1164,7 +1165,7 @@ body.gate-active .toast-container{
 ══════════════════════════════════════════ */
 .mgr-bar{
   position:fixed;
-  top:var(--header-h);
+  top:calc(var(--dt-bar-h) + var(--header-h));
   right:0;left:0;
   height:var(--mgr-bar-h);
   background:rgba(10,22,36,.96);
@@ -1176,25 +1177,25 @@ body.gate-active .toast-container{
   z-index:199;
 }
 .mgr-bar-photo{
-  width:58px;height:58px;border-radius:50%;object-fit:cover;
-  border:2px solid var(--gold);
-  box-shadow:0 0 14px rgba(201,168,76,.35);
+  width:78px;height:78px;border-radius:50%;object-fit:cover;
+  border:3px solid var(--gold);
+  box-shadow:0 0 18px rgba(201,168,76,.45);
   flex-shrink:0;
 }
 .mgr-bar-photo-fallback{
-  width:58px;height:58px;border-radius:50%;flex-shrink:0;
+  width:78px;height:78px;border-radius:50%;flex-shrink:0;
   background:linear-gradient(135deg,var(--gold),var(--gold-light));
   display:flex;align-items:center;justify-content:center;
-  font-size:1.5rem;
-  border:2px solid var(--gold);
-  box-shadow:0 0 14px rgba(201,168,76,.35);
+  font-size:1.8rem;
+  border:3px solid var(--gold);
+  box-shadow:0 0 18px rgba(201,168,76,.45);
 }
 .mgr-bar-info{display:flex;flex-direction:column;gap:.15rem}
 .mgr-bar-name{font-family:var(--font-d);font-size:1rem;color:var(--gold-light);font-weight:700;line-height:1.2}
 .mgr-bar-title{font-size:.75rem;color:rgba(245,240,232,.55)}
 .mgr-bar-inst{font-size:.72rem;color:rgba(245,240,232,.35)}
 .mgr-bar-sep{
-  width:1px;height:44px;background:rgba(201,168,76,.15);flex-shrink:0;margin:0 .75rem;
+  width:1px;height:56px;background:rgba(201,168,76,.15);flex-shrink:0;margin:0 .75rem;
 }
 /* Lab block — left side */
 .lab-block{
@@ -1229,9 +1230,53 @@ body.gate-active .toast-container{
   .lab-block{display:none}
   .mgr-bar-sep{display:none}
 }
+
+/* ══════════════════════════════════════════
+   DATE-TIME TOP BAR
+══════════════════════════════════════════ */
+.datetime-bar{
+  position:fixed;top:0;right:0;left:0;z-index:201;
+  height:30px;
+  background:rgba(9,18,30,.98);
+  border-bottom:1px solid rgba(201,168,76,.15);
+  display:flex;align-items:center;justify-content:center;
+  gap:1.75rem;
+  font-size:.72rem;
+  color:rgba(245,240,232,.55);
+  font-family:var(--font-b);
+  letter-spacing:.02em;
+}
+.datetime-bar .dt-item{display:flex;align-items:center;gap:.35rem}
+.datetime-bar .dt-icon{font-size:.8rem;opacity:.7}
+.datetime-bar .dt-val{color:var(--gold-light);font-weight:500}
+.datetime-bar .dt-sep{color:rgba(201,168,76,.25);font-size:.65rem}
+@media(max-width:480px){
+  .datetime-bar{gap:.85rem;font-size:.66rem}
+  .datetime-bar .dt-item:first-child{display:none}
+}
 </style>
 </head>
 <body>
+
+<!-- ═══════════════════════════════════════
+     DATE-TIME BAR
+════════════════════════════════════════ -->
+<div class="datetime-bar" id="datetimeBar">
+  <div class="dt-item">
+    <span class="dt-icon">🌙</span>
+    <span id="dtHijri" class="dt-val">…</span>
+  </div>
+  <span class="dt-sep">◆</span>
+  <div class="dt-item">
+    <span class="dt-icon">📅</span>
+    <span id="dtGregorian" class="dt-val">…</span>
+  </div>
+  <span class="dt-sep">◆</span>
+  <div class="dt-item">
+    <span class="dt-icon">🕐</span>
+    <span id="dtClock" class="dt-val">…</span>
+  </div>
+</div>
 
 <!-- ═══════════════════════════════════════
      HEADER
@@ -1302,7 +1347,7 @@ body.gate-active .toast-container{
     <div id="headerAuthArea">
       <button class="btn-login" onclick="openLoginModal()">🔑 دخول</button>
     </div>
-    <div class="h-stats-pill" id="headerStats">٠ صورة في البنك</div>
+    <div class="h-stats-pill" id="headerStats">0 صورة في البنك</div>
   </div>
 </header>
 
@@ -1328,30 +1373,78 @@ body.gate-active .toast-container{
 
   <!-- ▸ Lab info — left side (RTL end) -->
   <div class="lab-block">
-    <!-- SVG Logo for مخبر الدراسات النحوية واللغوية -->
+    <!-- SVG Logo — مخبر الدراسات النحوية واللغوية (م·د·ن·ل) -->
     <svg class="lab-logo" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
-      <!-- Background disc -->
-      <circle cx="28" cy="28" r="27" fill="#091520"/>
+      <defs>
+        <radialGradient id="lbg" cx="42%" cy="35%" r="72%">
+          <stop offset="0%" stop-color="#1C3D60"/>
+          <stop offset="100%" stop-color="#060F1A"/>
+        </radialGradient>
+        <linearGradient id="lgldA" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#EDD57C"/>
+          <stop offset="100%" stop-color="#B8921E"/>
+        </linearGradient>
+        <linearGradient id="lgldB" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#E8C97A"/>
+          <stop offset="100%" stop-color="#C9A84C"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Background -->
+      <circle cx="28" cy="28" r="27.8" fill="url(#lbg)"/>
+
       <!-- Outer ring -->
-      <circle cx="28" cy="28" r="27" fill="none" stroke="#C9A84C" stroke-width="1.4"/>
-      <!-- Inner decoration ring -->
-      <circle cx="28" cy="28" r="22.5" fill="none" stroke="rgba(201,168,76,0.18)" stroke-width="0.7"/>
-      <!-- 8-pointed star: two overlapping rotated squares (Islamic geometric) -->
-      <rect x="17" y="17" width="22" height="22" rx="2" fill="rgba(201,168,76,0.07)"
-            stroke="rgba(201,168,76,0.45)" stroke-width="0.9"
-            transform="rotate(0 28 28)"/>
-      <rect x="17" y="17" width="22" height="22" rx="2" fill="none"
-            stroke="rgba(201,168,76,0.28)" stroke-width="0.9"
-            transform="rotate(45 28 28)"/>
-      <!-- Central Arabic letter ن (for نحو — grammar) -->
-      <text x="28" y="34" text-anchor="middle"
-            font-family="Amiri,serif" font-size="20" font-weight="700"
-            fill="#E8C97A">ن</text>
-      <!-- Cardinal diamond dots -->
-      <circle cx="28" cy="6"  r="1.6" fill="rgba(201,168,76,0.65)"/>
-      <circle cx="28" cy="50" r="1.6" fill="rgba(201,168,76,0.65)"/>
-      <circle cx="6"  cy="28" r="1.6" fill="rgba(201,168,76,0.65)"/>
-      <circle cx="50" cy="28" r="1.6" fill="rgba(201,168,76,0.65)"/>
+      <circle cx="28" cy="28" r="27" fill="none" stroke="url(#lgldA)" stroke-width="1.5"/>
+
+      <!-- Inner dashed ring -->
+      <circle cx="28" cy="28" r="23.2" fill="none" stroke="rgba(201,168,76,0.22)"
+              stroke-width="0.6" stroke-dasharray="2 2.5"/>
+
+      <!-- Subtle crosshair dividers -->
+      <line x1="7" y1="28" x2="49" y2="28" stroke="rgba(201,168,76,0.12)" stroke-width="0.6"/>
+      <line x1="28" y1="7" x2="28" y2="49" stroke="rgba(201,168,76,0.12)" stroke-width="0.6"/>
+
+      <!-- ┌──────────────────────────────┐
+           │ TOP ROW  : م (right)  د (left) │
+           │ BOT ROW  : ن (right)  ل (left) │
+           └──────────────────────────────┘
+           RTL reading: م·د / ن·ل -->
+
+      <!-- م — مخبر (top-right, brightest) -->
+      <text x="36" y="24" text-anchor="middle"
+            font-family="Amiri,serif" font-size="11" font-weight="700"
+            fill="url(#lgldA)">م</text>
+
+      <!-- د — الدراسات (top-left) -->
+      <text x="20" y="24" text-anchor="middle"
+            font-family="Amiri,serif" font-size="11" font-weight="700"
+            fill="rgba(201,168,76,0.62)">د</text>
+
+      <!-- ن — النحوية (bottom-right) -->
+      <text x="36" y="41" text-anchor="middle"
+            font-family="Amiri,serif" font-size="11" font-weight="700"
+            fill="url(#lgldB)">ن</text>
+
+      <!-- ل — اللغوية (bottom-left) -->
+      <text x="20" y="41" text-anchor="middle"
+            font-family="Amiri,serif" font-size="11" font-weight="700"
+            fill="url(#lgldB)">ل</text>
+
+      <!-- Central diamond ornament -->
+      <polygon points="28,24.8 30.2,28 28,31.2 25.8,28"
+               fill="rgba(201,168,76,0.4)" stroke="rgba(201,168,76,0.65)" stroke-width="0.5"/>
+
+      <!-- Cardinal gold dots on ring -->
+      <circle cx="28" cy="1.8" r="1.7" fill="#C9A84C"/>
+      <circle cx="28" cy="54.2" r="1.7" fill="#C9A84C"/>
+      <circle cx="1.8" cy="28" r="1.7" fill="#C9A84C"/>
+      <circle cx="54.2" cy="28" r="1.7" fill="#C9A84C"/>
+
+      <!-- Diagonal accent dots -->
+      <circle cx="8.2" cy="8.2"   r="1" fill="rgba(201,168,76,0.4)"/>
+      <circle cx="47.8" cy="8.2"  r="1" fill="rgba(201,168,76,0.4)"/>
+      <circle cx="8.2" cy="47.8"  r="1" fill="rgba(201,168,76,0.4)"/>
+      <circle cx="47.8" cy="47.8" r="1" fill="rgba(201,168,76,0.4)"/>
     </svg>
 
     <div class="lab-info">
@@ -1388,15 +1481,15 @@ body.gate-active .toast-container{
 
     <div class="home-stats">
       <div class="stat-item">
-        <span class="stat-num" id="statTotal">٠</span>
+        <span class="stat-num" id="statTotal">0</span>
         <span class="stat-lbl">إجمالي الصور</span>
       </div>
       <div class="stat-item">
-        <span class="stat-num" id="statApproved">٠</span>
+        <span class="stat-num" id="statApproved">0</span>
         <span class="stat-lbl">معتمدة</span>
       </div>
       <div class="stat-item">
-        <span class="stat-num" id="statPending">٠</span>
+        <span class="stat-num" id="statPending">0</span>
         <span class="stat-lbl">قيد المراجعة</span>
       </div>
       <div class="stat-item">
@@ -1412,19 +1505,19 @@ body.gate-active .toast-container{
       <div class="filt-icon">🏛️</div>
       <h3>فلتر الهوية الثقافية</h3>
       <p>يرصد الاستلاب الثقافي، غياب المرجعية البصرية العربية الإسلامية، والتغريب غير المبرر.</p>
-      <span class="filt-weight">وزن ٤٠٪</span>
+      <span class="filt-weight">وزن 40٪</span>
     </div>
     <div class="filt-card c2">
       <div class="filt-icon">🧠</div>
       <h3>فلتر الجهد الذهني</h3>
       <p>يقيس درجة الواقعية الفائقة المعطِّلة للتخيّل — مبني على نظرية العبء المعرفي (Sweller).</p>
-      <span class="filt-weight">وزن ٣٥٪</span>
+      <span class="filt-weight">وزن 35٪</span>
     </div>
     <div class="filt-card c3">
       <div class="filt-icon">🔍</div>
       <h3>فلتر المحاكاة الزائفة</h3>
       <p>يكشف الصور التي تبتلع مرجعها الأصلي — مستند إلى السيميولوجيا البصرية (Kress & van Leeuwen).</p>
-      <span class="filt-weight">وزن ٢٥٪</span>
+      <span class="filt-weight">وزن 25٪</span>
     </div>
   </div>
 
@@ -1433,35 +1526,35 @@ body.gate-active .toast-container{
     <h2>مسار الصورة في المنصة</h2>
     <div class="steps-track">
       <div class="step">
-        <div class="step-num">١</div>
+        <div class="step-num">1</div>
         <div class="step-body">
           <h4>رفع الصورة</h4>
           <p>يرفع المعلم أو المصمم التعليمي الصورة بسحبها أو اختيارها مباشرة.</p>
         </div>
       </div>
       <div class="step">
-        <div class="step-num">٢</div>
+        <div class="step-num">2</div>
         <div class="step-body">
           <h4>إضافة البيانات الوصفية</h4>
           <p>تحديد المادة الدراسية، المرحلة العمرية، نوع الصورة، والسياق الثقافي.</p>
         </div>
       </div>
       <div class="step">
-        <div class="step-num">٣</div>
+        <div class="step-num">3</div>
         <div class="step-body">
           <h4>الفلترة التلقائية</h4>
           <p>يحلّل النظام الصورة عبر الفلاتر الثلاثة ويصدر تقريراً مفصّلاً.</p>
         </div>
       </div>
       <div class="step">
-        <div class="step-num">٤</div>
+        <div class="step-num">4</div>
         <div class="step-body">
           <h4>مراجعة التقرير واتخاذ القرار</h4>
           <p>يطّلع المُراجع على التقرير ويقرر: قبول، رفض، أو إرسال للمراجعة.</p>
         </div>
       </div>
       <div class="step">
-        <div class="step-num">٥</div>
+        <div class="step-num">5</div>
         <div class="step-body">
           <h4>القبول في البنك</h4>
           <p>الصورة المعتمدة تُضاف للبنك وتصبح متاحة لجميع المعلمين.</p>
@@ -1705,7 +1798,7 @@ body.gate-active .toast-container{
         <div class="overall-score-row">
           <div class="overall-score-num" id="overallScore">—</div>
           <div>
-            <div style="font-size:.83rem;color:rgba(245,240,232,.5);margin-bottom:.25rem">النتيجة الإجمالية / ١٠٠</div>
+            <div style="font-size:.83rem;color:rgba(245,240,232,.5);margin-bottom:.25rem">النتيجة الإجمالية / 100</div>
             <span class="badge" id="overallBadge">—</span>
           </div>
         </div>
@@ -1836,7 +1929,7 @@ body.gate-active .toast-container{
           <button class="view-btn active" id="gridViewBtn" onclick="setView('grid')" title="شبكة">⊞</button>
           <button class="view-btn" id="listViewBtn" onclick="setView('list')" title="قائمة">☰</button>
         </div>
-        <span class="bank-count" id="bankCount">٠ نتيجة</span>
+        <span class="bank-count" id="bankCount">0 نتيجة</span>
       </div>
 
       <div class="img-grid" id="imgGrid"></div>
@@ -1854,15 +1947,15 @@ body.gate-active .toast-container{
 
     <div class="kpi-grid">
       <div class="kpi-card">
-        <div class="kpi-val" id="kpiTotal">٠</div>
+        <div class="kpi-val" id="kpiTotal">0</div>
         <div class="kpi-lbl">إجمالي الصور</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-val" id="kpiApproved" style="color:#7CBF7C">٠</div>
+        <div class="kpi-val" id="kpiApproved" style="color:#7CBF7C">0</div>
         <div class="kpi-lbl">معتمدة</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-val" id="kpiRejected" style="color:#E07068">٠</div>
+        <div class="kpi-val" id="kpiRejected" style="color:#E07068">0</div>
         <div class="kpi-lbl">مرفوضة</div>
       </div>
       <div class="kpi-card">
@@ -1894,7 +1987,7 @@ body.gate-active .toast-container{
 <div id="page-members" class="page">
   <div class="members-wrap">
     <h2>👥 أعضاء المنصة
-      <span class="disc-counter" id="membersCount">٠ عضو</span>
+      <span class="disc-counter" id="membersCount">0 عضو</span>
     </h2>
     <div class="members-grid" id="membersGrid">
       <div class="empty-state">
@@ -1920,7 +2013,7 @@ body.gate-active .toast-container{
 <div id="page-discussion" class="page">
   <div class="discussion-wrap">
     <h2>💬 منتدى النقاش
-      <span class="disc-counter" id="threadCount">٠ موضوع</span>
+      <span class="disc-counter" id="threadCount">0 موضوع</span>
     </h2>
 
     <!-- New post -->
@@ -2155,8 +2248,8 @@ body.gate-active .toast-container{
             <label>المستوى الدراسي</label>
             <select id="reg-s-level">
               <option value="">— اختر —</option>
-              <option>ليسانس س١</option><option>ليسانس س٢</option><option>ليسانس س٣</option>
-              <option>ماستر س١</option><option>ماستر س٢</option><option>دكتوراه</option>
+              <option>ليسانس س1</option><option>ليسانس س2</option><option>ليسانس س3</option>
+              <option>ماستر س1</option><option>ماستر س2</option><option>دكتوراه</option>
             </select>
           </div>
           <div class="form-group">
@@ -2403,7 +2496,7 @@ function generateAIAnalysis(meta, cultural, realism, simulacrum, overall) {
   const subjectLbl = SUBJECT_LABELS[meta.subject] || meta.subject || 'غير محدد';
   const levelLbl = LEVEL_LABELS[meta.level] || 'غير محدد';
 
-  let text = `الصورة المرفوعة لمادة ${subjectLbl} — المرحلة ${levelLbl} — حصلت على نتيجة إجمالية ${overall}/١٠٠ (${status}). `;
+  let text = `الصورة المرفوعة لمادة ${subjectLbl} — المرحلة ${levelLbl} — حصلت على نتيجة إجمالية ${overall}/100 (${status}). `;
 
   if (cultural.passed && realism.passed && simulacrum.passed) {
     text += `اجتازت الفلاتر الثلاثة بنجاح وهي مرشّحة للقبول في البنك. `;
@@ -2429,7 +2522,7 @@ async function animateStep(stepId, badgeId, score, passed) {
   await delay(1200);
   step.className = 'prog-step done';
   badge.className = `prog-badge badge ${passed?'badge-pass':'badge-fail'}`;
-  badge.textContent = `${score}/١٠٠`;
+  badge.textContent = `${score}/100`;
 }
 
 function setRing(id, score) {
@@ -2837,7 +2930,7 @@ function openModal(id) {
       <div class="modal-meta-item"><strong>المرحلة</strong>${LEVEL_LABELS[img.level]||img.level||'—'}</div>
       <div class="modal-meta-item"><strong>النوع</strong>${TYPE_LABELS[img.type]||img.type||'—'}</div>
       <div class="modal-meta-item"><strong>السياق الثقافي</strong>${CULTURE_LABELS[img.culture]||img.culture||'—'}</div>
-      <div class="modal-meta-item"><strong>التعقيد المعرفي</strong>${img.complexity||'—'}/٥</div>
+      <div class="modal-meta-item"><strong>التعقيد المعرفي</strong>${img.complexity||'—'}/5</div>
     </div>
     ${img.tags&&img.tags.length?`<div style="margin-bottom:.9rem"><strong style="font-size:.78rem;color:rgba(245,240,232,.45)">الوسوم</strong><div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem">${img.tags.map(t=>`<span class="tag-chip">${t}</span>`).join('')}</div></div>`:''}
     ${img.desc?`<div style="margin-bottom:1rem"><strong style="font-size:.78rem;color:rgba(245,240,232,.45)">الوصف</strong><p style="font-size:.85rem;color:rgba(245,240,232,.65);margin-top:.3rem;line-height:1.6">${img.desc}</p></div>`:''}
@@ -2938,12 +3031,75 @@ function updateHomeStats() {
 }
 
 function toArabicNum(n) {
-  return n.toString().replace(/[0-9]/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+  return n.toString().replace(/[0-9]/g, d => '0123456789'[d]);
 }
 
 /* ══════════════════════
-   TOAST
+   DATE-TIME BAR
 ══════════════════════ */
+(function initDateTimeBar() {
+  const HIJRI_MONTHS = [
+    'محرم','صفر','ربيع الأول','ربيع الثاني',
+    'جمادى الأولى','جمادى الثانية','رجب','شعبان',
+    'رمضان','شوال','ذو القعدة','ذو الحجة'
+  ];
+  const GREG_MONTHS = [
+    'يناير','فبراير','مارس','أبريل','مايو','يونيو',
+    'يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'
+  ];
+  const GREG_DAYS = ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+
+  function toHijri(date) {
+    // Gregorian → Julian Day Number (proleptic Gregorian)
+    const Y = date.getFullYear();
+    const M = date.getMonth() + 1;
+    const D = date.getDate();
+    const a = Math.floor((14 - M) / 12);
+    const y = Y + 4800 - a;
+    const m = M + 12 * a - 3;
+    const jdn = D + Math.floor((153 * m + 2) / 5)
+              + 365 * y + Math.floor(y / 4)
+              - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
+
+    // Julian Day Number → Tabular Islamic (civil) calendar
+    let l = jdn - 1948440 + 10632;
+    const n = Math.floor((l - 1) / 10631);
+    l = l - 10631 * n + 354;
+    const j = Math.floor((10985 - l) / 5316) * Math.floor((50 * l) / 17719)
+            + Math.floor(l / 5670) * Math.floor((43 * l) / 15238);
+    l = l - Math.floor((30 - j) / 15) * Math.floor((17719 * j) / 50)
+          - Math.floor(j / 16) * Math.floor((15238 * j) / 43) + 29;
+    const hMonth = Math.floor((24 * l) / 709);
+    const hDay   = l - Math.floor((709 * hMonth) / 24);
+    const hYear  = 30 * n + j - 30;
+    return { d: hDay, m: hMonth - 1, y: hYear };
+  }
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  function tick() {
+    const now  = new Date();
+    const hj   = toHijri(now);
+    const day  = GREG_DAYS[now.getDay()];
+    const h    = now.getHours();
+    const ampm = h >= 12 ? 'م' : 'ص';
+    const h12  = h % 12 || 12;
+
+    document.getElementById('dtHijri').textContent =
+      `${hj.d} ${HIJRI_MONTHS[hj.m]} ${hj.y} هـ`;
+
+    document.getElementById('dtGregorian').textContent =
+      `${day} ${now.getDate()} ${GREG_MONTHS[now.getMonth()]} ${now.getFullYear()} م`;
+
+    document.getElementById('dtClock').textContent =
+      `${h12}:${pad(now.getMinutes())}:${pad(now.getSeconds())} ${ampm}`;
+  }
+
+  tick();
+  setInterval(tick, 1000);
+})();
+
+
 function showToast(msg, type='info') {
   const icons = { success:'✔', error:'✘', info:'ℹ' };
   const t = document.createElement('div');
@@ -3155,7 +3311,7 @@ const AI_AGENTS = [
     emoji: '🏛️',
     role: 'فلتر الاستلاب الثقافي والتغريب البصري',
     desc: 'يحلّل مدى انسجام الصورة مع الهوية البصرية للمتعلم العربي — يكشف الاستلاب الثقافي والمرجعيات الغربية غير الملائمة. يُنجز مهمته أولاً.',
-    weight: '٤٠٪ من الدرجة الكلية',
+    weight: '40٪ من الدرجة الكلية',
     pipeline: ['استقبال الصورة', 'تحليل الهوية', 'رصد الاستلاب', 'إصدار الدرجة'],
     scoreKey: 'cultural',
     passThreshold: 60,
@@ -3166,7 +3322,7 @@ const AI_AGENTS = [
     emoji: '🧠',
     role: 'فلتر الواقعية الفائقة وتعطيل التخيّل',
     desc: 'يقيّم درجة الواقعية البصرية للصورة وأثرها على التفكير النقدي للمتعلم — يرصد الصور المفرطة في الدقة التي تُلغي مجهود التخيّل. يعمل بعد وكيل الهوية.',
-    weight: '٣٥٪ من الدرجة الكلية',
+    weight: '35٪ من الدرجة الكلية',
     pipeline: ['استقبال نتيجة الهوية', 'قياس الواقعية', 'تحليل التعقيد', 'إصدار الدرجة'],
     scoreKey: 'realism',
     passThreshold: 60,
@@ -3177,7 +3333,7 @@ const AI_AGENTS = [
     emoji: '🔍',
     role: 'فلتر الوضوح السيميائي والمرجعية',
     desc: 'يفحص مدى وضوح الدلالة السيميائية للصورة وأصالتها — يكتشف الصور الزائفة أو المجتزأة التي تُشوّه المفاهيم البيداغوجية. آخر وكيل في المسار.',
-    weight: '٢٥٪ من الدرجة الكلية',
+    weight: '25٪ من الدرجة الكلية',
     pipeline: ['استقبال نتيجتَي السابقَين', 'تحليل السيمياء', 'فحص المرجعية', 'الحكم النهائي'],
     scoreKey: 'simulacrum',
     passThreshold: 55,
@@ -4285,17 +4441,17 @@ if (!currentUser) { openGate(); }
     <p style="margin-bottom:1rem;"><strong>الإشكالية المحورية:</strong> الصور التوليدية التي تنتجها نماذج الذكاء الاصطناعي قد تسقط في ثلاثة مخاطر بيداغوجية:</p>
     <div class="risk-grid">
       <div class="risk-card">
-        <div class="risk-num">١</div>
+        <div class="risk-num">1</div>
         <h4>الاستلاب الثقافي</h4>
         <p>غياب المرجعية البصرية العربية الإسلامية</p>
       </div>
       <div class="risk-card">
-        <div class="risk-num">٢</div>
+        <div class="risk-num">2</div>
         <h4>الواقعية الفائقة المعطِّلة</h4>
         <p>سد الفجوات البصرية بشكل مفرط يُخمد الجهد الذهني والتخيّل</p>
       </div>
       <div class="risk-card">
-        <div class="risk-num">٣</div>
+        <div class="risk-num">3</div>
         <h4>المحاكاة الزائفة</h4>
         <p>الصورة تنقلب من وسيلة إيضاح إلى وهم يبتلع أصله المرجعي</p>
       </div>
@@ -4504,17 +4660,17 @@ export type CulturalContext =
     <div class="filter-card gold">
       <div class="fc-icon">🏛️</div>
       <h4>الفلتر الأول: الاستلاب الثقافي</h4>
-      <p>يرصد الهوية البصرية، الشخصيات، البيئة المكانية، والانزياح الثقافي التلقائي. وزنه <strong>٤٠٪</strong> من النتيجة الإجمالية.</p>
+      <p>يرصد الهوية البصرية، الشخصيات، البيئة المكانية، والانزياح الثقافي التلقائي. وزنه <strong>40٪</strong> من النتيجة الإجمالية.</p>
     </div>
     <div class="filter-card blue">
       <div class="fc-icon">🧠</div>
       <h4>الفلتر الثاني: الواقعية الفائقة المعطِّلة</h4>
-      <p>مبني على نظرية العبء المعرفي (Sweller) ونظرية ابن سينا في القوة المتخيّلة. وزنه <strong>٣٥٪</strong>.</p>
+      <p>مبني على نظرية العبء المعرفي (Sweller) ونظرية ابن سينا في القوة المتخيّلة. وزنه <strong>35٪</strong>.</p>
     </div>
     <div class="filter-card terra">
       <div class="fc-icon">🔍</div>
       <h4>الفلتر الثالث: المحاكاة الزائفة</h4>
-      <p>يستند إلى السيميولوجيا البصرية (Kress &amp; van Leeuwen) ومفهوم بودريار عن التضاهي. وزنه <strong>٢٥٪</strong>.</p>
+      <p>يستند إلى السيميولوجيا البصرية (Kress &amp; van Leeuwen) ومفهوم بودريار عن التضاهي. وزنه <strong>25٪</strong>.</p>
     </div>
   </div>
 
@@ -4564,7 +4720,7 @@ export async function runFullFilter(imageBase64, metadata) {
   <div class="card">
     <ul class="bullets">
       <li><strong>Hero Section</strong> — زخرفة هندسية إسلامية في الخلفية + عنوان + وصف</li>
-      <li><strong>إحصاءات سريعة</strong> — ٣ فلاتر / ١٢+ مادة دراسية / ٦ مراحل تعليمية</li>
+      <li><strong>إحصاءات سريعة</strong> — 3 فلاتر / 12+ مادة دراسية / 6 مراحل تعليمية</li>
       <li><strong>بطاقة معاينة الفلتر</strong> — تعرض الفلاتر الثلاثة بصرياً مع أيقوناتها</li>
       <li><strong>مسار الصورة (Timeline)</strong> — من الرفع حتى القبول في البنك</li>
     </ul>
@@ -4772,33 +4928,33 @@ VITE_APP_VERSION=0.1.0</code></pre>
   <h2 class="section-title">📌 ملاحظات للمطوّر</h2>
   <div class="notes-grid">
     <div class="note-item">
-      <div class="note-num">١ — الاتجاه</div>
+      <div class="note-num">1 — الاتجاه</div>
       <p>كل المكوّنات تعمل بـ <code>dir="rtl"</code> — أضفها في المكوّنات الجذرية.</p>
     </div>
     <div class="note-item">
-      <div class="note-num">٢ — الفلترة</div>
+      <div class="note-num">2 — الفلترة</div>
       <p>الفلاتر الثلاث تعمل بالتوازي (<code>Promise.all</code>) لتسريع التحليل.</p>
     </div>
     <div class="note-item">
-      <div class="note-num">٣ — التخزين</div>
+      <div class="note-num">3 — التخزين</div>
       <p>في النسخة الأولية استخدم <code>LocalStorage</code>. للإنتاج انتقل إلى Supabase.</p>
     </div>
     <div class="note-item">
-      <div class="note-num">٤ — الأمان</div>
+      <div class="note-num">4 — الأمان</div>
       <p>لا ترفع مفتاح API في الكود — استخدم <code>.env</code> دائماً. للإنتاج: انقل الاستدعاءات لـ Backend.</p>
     </div>
     <div class="note-item">
-      <div class="note-num">٥ — الأداء</div>
+      <div class="note-num">5 — الأداء</div>
       <p>صور البنك تُحمَّل بـ <code>lazy loading</code> عبر <code>Intersection Observer API</code>.</p>
     </div>
     <div class="note-item">
-      <div class="note-num">٦ — الوصولية</div>
+      <div class="note-num">6 — الوصولية</div>
       <p>كل الصور تحتاج <code>alt</code> وصفياً. الألوان تحترم نسب التباين WCAG AA.</p>
     </div>
   </div>
 
   <div class="card" style="margin-top:1.5rem;">
-    <h4 style="color:var(--color-gold-light);margin-bottom:0.75rem;">٧ — التوسّع المستقبلي</h4>
+    <h4 style="color:var(--color-gold-light);margin-bottom:0.75rem;">7 — التوسّع المستقبلي</h4>
     <ul class="bullets">
       <li>نظام أدوار (admin / reviewer / teacher / student)</li>
       <li>تصدير البنك بصيغة JSON/CSV</li>
@@ -4813,7 +4969,7 @@ VITE_APP_VERSION=0.1.0</code></pre>
   <p>
     مبني على مخرجات المداخلة البحثية:
     <span>"الأيقونوغرافيا البيداغوجية في عصر الذكاء الاصطناعي"</span>
-    — المحاور ٧ و١٠
+    — المحاور 7 و10
   </p>
 </footer>
 
