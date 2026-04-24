@@ -11,8 +11,8 @@
    VARIABLES & RESET
 ══════════════════════════════════════════ */
 :root {
-  --midnight:    #0D1B2A;
-  --deep-blue:   #1A3A5C;
+  --midnight:    #1A2838;
+  --deep-blue:   #8aa1b9;
   --gold:        #C9A84C;
   --gold-light:  #E8C97A;
   --ivory:       #F5F0E8;
@@ -27,7 +27,7 @@
   --sidebar-w:260px;
   --dt-bar-h:30px;
   --header-h:64px;
-  --mgr-bar-h:100px;
+  --mgr-bar-h:180px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -653,37 +653,44 @@ img{max-width:100%;display:block}
    MANAGER PROFILE
 ══════════════════════════════════════════ */
 .manager-section-title{
-  font-family:var(--font-d);font-size:1.15rem;color:var(--gold);
-  margin:2.5rem 0 1rem;padding-bottom:.5rem;
+  font-family:var(--font-d);font-size:1.28rem;color:var(--gold);
+  margin:2.8rem 0 1.2rem;padding-bottom:.65rem;
   border-bottom:1px solid rgba(201,168,76,.12);
   display:flex;align-items:center;gap:.5rem;
 }
 .manager-section{
   background:linear-gradient(145deg,rgba(201,168,76,.06),rgba(26,58,92,.1));
   border:1px solid rgba(201,168,76,.18);border-radius:var(--r-lg);
-  padding:1.75rem 2rem;margin-bottom:1.5rem;
-  display:flex;gap:2rem;align-items:center;
+  padding:3.3rem 3.8rem;margin-bottom:2.25rem;
+  display:flex;gap:3.8rem;align-items:center;
 }
-@media(max-width:640px){.manager-section{flex-direction:column;text-align:center}}
+@media(max-width:640px){.manager-section{flex-direction:column;text-align:center;padding:2.25rem 1.75rem;gap:2rem}}
 .manager-photo{
-  width:110px;height:110px;border-radius:50%;object-fit:cover;
-  border:3px solid var(--gold);box-shadow:0 0 24px rgba(201,168,76,.35);flex-shrink:0;
+  width:210px;height:210px;border-radius:50%;object-fit:cover;object-position:center 12%;
+  background:#fff;image-rendering:auto;transform:translateZ(0);backface-visibility:hidden;
+  border:4px solid var(--gold);box-shadow:0 0 38px rgba(201,168,76,.35);flex-shrink:0;
 }
 .manager-photo-placeholder{
-  width:110px;height:110px;border-radius:50%;flex-shrink:0;
+  width:210px;height:210px;border-radius:50%;flex-shrink:0;
   background:linear-gradient(135deg,var(--gold),var(--gold-light));
-  display:flex;align-items:center;justify-content:center;font-size:2.5rem;
-  border:3px solid var(--gold);box-shadow:0 0 24px rgba(201,168,76,.35);
+  display:flex;align-items:center;justify-content:center;font-size:4.2rem;
+  border:4px solid var(--gold);box-shadow:0 0 38px rgba(201,168,76,.35);
 }
-.manager-name{font-family:var(--font-d);font-size:1.35rem;color:var(--gold-light);margin-bottom:.2rem}
-.manager-title{font-size:.88rem;color:rgba(245,240,232,.65);margin-bottom:.6rem}
+.manager-name{font-family:var(--font-d);font-size:1.95rem;color:var(--gold-light);margin-bottom:.45rem}
+.manager-title{font-size:1.08rem;color:rgba(245,240,232,.65);margin-bottom:.9rem}
 .manager-badge-pill{
   display:inline-block;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.28);
-  color:var(--gold-light);padding:.2rem .75rem;border-radius:99px;font-size:.78rem;margin-bottom:.85rem;
+  color:var(--gold-light);padding:.35rem 1rem;border-radius:99px;font-size:.92rem;margin-bottom:1.1rem;
 }
-.manager-affiliations{display:flex;flex-direction:column;gap:.3rem;font-size:.83rem;color:rgba(245,240,232,.6)}
+.manager-affiliations{display:flex;flex-direction:column;gap:.5rem;font-size:1rem;color:rgba(245,240,232,.6)}
 .manager-affiliations span{display:flex;align-items:flex-start;gap:.4rem}
 .manager-affiliations span::before{content:'◈';color:var(--gold);font-size:.65rem;margin-top:.3rem;flex-shrink:0}
+
+@media(max-width:640px){
+  .manager-photo,
+  .manager-photo-placeholder{width:170px;height:170px}
+  .manager-photo-placeholder{font-size:3.7rem}
+}
 
 /* ══════════════════════════════════════════
    HEADER AUTH
@@ -772,6 +779,7 @@ img{max-width:100%;display:block}
 .role-student{background:rgba(90,122,90,.15);border:1px solid rgba(90,122,90,.3);color:#7CBF7C}
 .role-artist{background:rgba(139,69,19,.2);border:1px solid rgba(139,69,19,.4);color:#D4956A}
 .role-institution{background:rgba(90,60,130,.15);border:1px solid rgba(90,60,130,.3);color:#B89AE0}
+.role-expert{background:rgba(201,168,76,.18);border:1px solid rgba(201,168,76,.38);color:var(--gold-light);font-weight:600}
 .member-stats-row{display:flex;gap:.5rem;flex-wrap:wrap;font-size:.72rem;color:rgba(245,240,232,.4)}
 .member-stats-row span{background:rgba(255,255,255,.04);padding:.12rem .45rem;border-radius:var(--r-sm)}
 .member-works-section{margin-top:1rem}
@@ -896,6 +904,7 @@ img{max-width:100%;display:block}
 .agent-thinking-dots span:nth-child(2){animation-delay:.18s}
 .agent-thinking-dots span:nth-child(3){animation-delay:.36s}
 @keyframes dotBounce{0%,80%,100%{transform:translateY(0);opacity:.3}40%{transform:translateY(-5px);opacity:1}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
 .agent-result-body{padding:.65rem .8rem;display:flex;gap:.7rem;align-items:flex-start}
 .agent-result-thumb{
   width:52px;height:52px;border-radius:var(--r-sm);overflow:hidden;flex-shrink:0;
@@ -1172,30 +1181,31 @@ body.gate-active .toast-container{
   backdrop-filter:blur(16px);
   border-bottom:1px solid rgba(201,168,76,.18);
   display:flex;align-items:center;
-  padding:0 1.5rem;
-  gap:1rem;
+  padding:0 2.5rem;
+  gap:1.5rem;
   z-index:199;
 }
 .mgr-bar-photo{
-  width:78px;height:78px;border-radius:50%;object-fit:cover;
-  border:3px solid var(--gold);
-  box-shadow:0 0 18px rgba(201,168,76,.45);
+  width:140px;height:140px;border-radius:50%;object-fit:cover;object-position:center 12%;
+  background:#fff;image-rendering:auto;transform:translateZ(0);backface-visibility:hidden;
+  border:4px solid var(--gold);
+  box-shadow:0 0 28px rgba(201,168,76,.45);
   flex-shrink:0;
 }
 .mgr-bar-photo-fallback{
-  width:78px;height:78px;border-radius:50%;flex-shrink:0;
+  width:140px;height:140px;border-radius:50%;flex-shrink:0;
   background:linear-gradient(135deg,var(--gold),var(--gold-light));
   display:flex;align-items:center;justify-content:center;
-  font-size:1.8rem;
-  border:3px solid var(--gold);
-  box-shadow:0 0 18px rgba(201,168,76,.45);
+  font-size:2.85rem;
+  border:4px solid var(--gold);
+  box-shadow:0 0 28px rgba(201,168,76,.45);
 }
-.mgr-bar-info{display:flex;flex-direction:column;gap:.15rem}
-.mgr-bar-name{font-family:var(--font-d);font-size:1rem;color:var(--gold-light);font-weight:700;line-height:1.2}
-.mgr-bar-title{font-size:.75rem;color:rgba(245,240,232,.55)}
-.mgr-bar-inst{font-size:.72rem;color:rgba(245,240,232,.35)}
+.mgr-bar-info{display:flex;flex-direction:column;gap:.28rem;min-width:0}
+.mgr-bar-name{font-family:var(--font-d);font-size:1.72rem;color:var(--gold-light);font-weight:700;line-height:1.2}
+.mgr-bar-title{font-size:1.16rem;color:rgba(245,240,232,.55);line-height:1.4}
+.mgr-bar-inst{font-size:1.02rem;color:rgba(245,240,232,.35);line-height:1.4}
 .mgr-bar-sep{
-  width:1px;height:56px;background:rgba(201,168,76,.15);flex-shrink:0;margin:0 .75rem;
+  width:1px;height:96px;background:rgba(201,168,76,.15);flex-shrink:0;margin:0 1.25rem;
 }
 /* Lab block — left side */
 .lab-block{
@@ -1205,16 +1215,16 @@ body.gate-active .toast-container{
   width:54px;height:54px;flex-shrink:0;
   filter:drop-shadow(0 0 8px rgba(201,168,76,.3));
 }
-.lab-info{display:flex;flex-direction:column;gap:.12rem}
+.lab-info{display:flex;flex-direction:column;gap:.18rem;min-width:0}
 .lab-info-name{
-  font-family:var(--font-d);font-size:.9rem;color:var(--gold-light);
-  font-weight:700;line-height:1.25;
+  font-family:var(--font-d);font-size:1.14rem;color:var(--gold-light);
+  font-weight:700;line-height:1.3;
 }
 .lab-info-sub{
-  font-size:.72rem;color:rgba(245,240,232,.48);line-height:1.3;
+  font-size:.88rem;color:rgba(245,240,232,.48);line-height:1.35;
 }
 .lab-info-univ{
-  font-size:.68rem;color:rgba(245,240,232,.3);
+  font-size:.8rem;color:rgba(245,240,232,.3);
   display:flex;align-items:center;gap:.3rem;
 }
 .lab-info-univ::before{
@@ -1222,9 +1232,15 @@ body.gate-active .toast-container{
   background:rgba(201,168,76,.4);
 }
 @media(max-width:640px){
+  :root{--mgr-bar-h:132px}
   .mgr-bar-inst{display:none}
   .lab-info-sub,.lab-info-univ{display:none}
-  .mgr-bar{gap:.65rem}
+  .mgr-bar{gap:.9rem;padding:0 1rem}
+  .mgr-bar-photo,
+  .mgr-bar-photo-fallback{width:92px;height:92px}
+  .mgr-bar-photo-fallback{font-size:2rem}
+  .mgr-bar-name{font-size:1.18rem}
+  .mgr-bar-title{font-size:.9rem}
 }
 @media(max-width:900px){
   .lab-block{display:none}
@@ -1356,12 +1372,12 @@ body.gate-active .toast-container{
 ════════════════════════════════════════ -->
 <div class="mgr-bar">
   <!-- ▸ Manager info — right side (RTL start) -->
-  <img src="mokhtar.png" class="mgr-bar-photo" alt="أ.د بن جلول مختار"
+  <img src="mokhtar.png" class="mgr-bar-photo" alt="أ.د بن جلول مختار" width="1230" height="1581" loading="eager" decoding="async" fetchpriority="high"
        onerror="this.style.display='none';document.getElementById('mgrBarFallback').style.display='flex'">
   <div class="mgr-bar-photo-fallback" id="mgrBarFallback" style="display:none">👤</div>
   <div class="mgr-bar-info">
     <div class="mgr-bar-name">أ.د بن جلول مختار</div>
-    <div class="mgr-bar-title">أستاذ اللسانيات العربية — مشرف المنصة</div>
+    <div class="mgr-bar-title">أستاذ اللسانيات العربية — مدير المنصة</div>
     <div class="mgr-bar-inst">قسم اللغة والأدب العربي · كلية الآداب واللغات · جامعة ابن خلدون تيارت</div>
   </div>
 
@@ -1465,8 +1481,8 @@ body.gate-active .toast-container{
       <span class="badge-dot"></span>
       الأيقونوغرافيا البيداغوجية العربية
     </div>
-    <h1>بنك الصور<br /><span>المفلترة بيداغوجياً</span></h1>
-    <p>منصة علمية لحوكمة الصور التعليمية وفق معايير الهوية الثقافية والسلامة المعرفية للمتعلم العربي</p>
+    <h1>بنك الصور<br /><span>المعالجة بيداغوجياً</span></h1>
+    <p>منصة علمية لمعالجة الصور التعليمية وفق معايير الهوية الثقافية والسلامة المعرفية للمتعلم العربي</p>
     <div class="hero-actions">
       <button class="btn-primary" onclick="navigate('upload')">
         📤 رفع صورة للفلترة
@@ -1567,7 +1583,7 @@ body.gate-active .toast-container{
   <div class="manager-section-title">🎓 مدير المنصة</div>
   <div class="manager-section">
     <div>
-      <img src="mokhtar.png" alt="أ.د بن جلول مختار" class="manager-photo"
+      <img src="mokhtar.png" alt="أ.د بن جلول مختار" class="manager-photo" width="1230" height="1581" loading="eager" decoding="async" fetchpriority="high"
            onerror="this.style.display='none';document.getElementById('mgrPlaceholder').style.display='flex'">
       <div class="manager-photo-placeholder" id="mgrPlaceholder" style="display:none">👤</div>
     </div>
@@ -1809,6 +1825,10 @@ body.gate-active .toast-container{
           <button class="btn-accept" onclick="saveImage('approved')">✔ قبول في البنك</button>
           <button class="btn-reject" onclick="saveImage('rejected')">✘ رفض</button>
           <button class="btn-review" onclick="saveImage('pending')">⟳ إرسال للمراجعة</button>
+          <button class="btn-secondary" id="showDetailedReportBtn" onclick="showDetailedReport()" 
+                  style="display:none;padding:.6rem 1.2rem;font-size:.87rem;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3)">
+            📋 عرض التقرير التفصيلي الشامل
+          </button>
         </div>
 
         <!-- ══ AI Agent Consultation Panel ══ -->
@@ -2116,13 +2136,7 @@ body.gate-active .toast-container{
         <option value="student">طالب</option>
         <option value="artist">فنان تشكيلي</option>
         <option value="institution">مؤسسة</option>
-        <option value="admin" selected>مدير</option>
-      </select>
-    </div>
-
-    <button class="run-btn" onclick="doGateLogin()" style="margin-top:.4rem">🔑 دخول إلى المنصة</button>
-    <div class="auth-divider">أو</div>
-    <div style="text-align:center;font-size:.85rem;color:rgba(245,240,232,.5)">
+          <option value="expert">خبير مراجعة الصور</option>
       ليس لديك حساب؟
       <button class="auth-link" onclick="openGateRegister()">سجّل الآن</button>
     </div>
@@ -2151,6 +2165,7 @@ body.gate-active .toast-container{
           <option value="student">طالب</option>
           <option value="artist">فنان تشكيلي</option>
           <option value="institution">مؤسسة</option>
+          <option value="expert">خبير مراجعة الصور</option>
           <option value="admin">مدير</option>
         </select>
       </div>
@@ -2182,6 +2197,7 @@ body.gate-active .toast-container{
         <div class="role-tab" onclick="switchRegRole('student',this)">🎓 طالب</div>
         <div class="role-tab" onclick="switchRegRole('artist',this)">🎨 فنان تشكيلي</div>
         <div class="role-tab" onclick="switchRegRole('institution',this)">🏛 مؤسسة</div>
+        <div class="role-tab" onclick="switchRegRole('expert',this)">🔬 خبير مراجعة</div>
       </div>
 
       <!-- Common fields -->
@@ -2290,6 +2306,49 @@ body.gate-active .toast-container{
           <div class="form-group" style="grid-column:1/-1">
             <label>رابط معرض الأعمال (اختياري)</label>
             <input type="url" id="reg-a-portfolio" placeholder="https://...">
+          </div>
+        </div>
+      </div>
+
+      <!-- Expert fields -->
+      <div class="reg-fields-panel" id="reg-expert">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.9rem">
+          <div class="form-group">
+            <label>الاسم الكامل</label>
+            <input type="text" id="reg-e-name" placeholder="اللقب والاسم">
+          </div>
+          <div class="form-group">
+            <label>التخصص الأكاديمي</label>
+            <select id="reg-e-spec">
+              <option value="">— اختر —</option>
+              <option>علوم التربية</option>
+              <option>اللسانيات التطبيقية</option>
+              <option>تكنولوجيا التعليم</option>
+              <option>السيميولوجيا البصرية</option>
+              <option>التصميم التعليمي</option>
+              <option>علم النفس المعرفي</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>الدرجة العلمية</label>
+            <select id="reg-e-degree">
+              <option value="">— اختر —</option>
+              <option>دكتوراه</option>
+              <option>ماجستير / ماستر</option>
+              <option>ليسانس</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>سنوات الخبرة</label>
+            <input type="number" id="reg-e-exp" placeholder="عدد السنوات" min="0">
+          </div>
+          <div class="form-group" style="grid-column:1/-1">
+            <label>المؤسسة / الجامعة</label>
+            <input type="text" id="reg-e-inst" placeholder="اسم المؤسسة">
+          </div>
+          <div class="form-group" style="grid-column:1/-1">
+            <label>مجالات التخصص في المراجعة</label>
+            <input type="text" id="reg-e-fields" placeholder="مثال: الهوية الثقافية، الجهد الذهني، المحاكاة الزائفة">
           </div>
         </div>
       </div>
@@ -2453,6 +2512,12 @@ function resetResults() {
   document.getElementById('filterResults').style.display='none';
   document.getElementById('overallCard').style.display='none';
   currentFilterResult = null;
+  
+  // إخفاء زر التقرير التفصيلي
+  const detailedReportBtn = document.getElementById('showDetailedReportBtn');
+  if (detailedReportBtn) {
+    detailedReportBtn.style.display = 'none';
+  }
 }
 
 function computeCulturalScore(meta) {
@@ -2491,28 +2556,244 @@ function computeSimulacrumScore(meta) {
   return { score, issues, suggestions, passed: score >= 60 };
 }
 
-function generateAIAnalysis(meta, cultural, realism, simulacrum, overall) {
-  const status = overall >= 75 ? 'مرتفعة' : overall >= 55 ? 'متوسطة' : 'منخفضة';
-  const subjectLbl = SUBJECT_LABELS[meta.subject] || meta.subject || 'غير محدد';
-  const levelLbl = LEVEL_LABELS[meta.level] || 'غير محدد';
+/* ══════════════════════
+   نظام التقييم البيداغوجي الشامل للصور التعليمية
+   نظام خبير يعمل وفق ثلاثة محاور:
+   1- الهوية الثقافية
+   2- الجهد الذهني (Cognitive Load)
+   3- المحاكاة الزائفة (Simulation)
+══════════════════════ */
 
-  let text = `الصورة المرفوعة لمادة ${subjectLbl} — المرحلة ${levelLbl} — حصلت على نتيجة إجمالية ${overall}/100 (${status}). `;
+/**
+ * تقييم شامل للصورة التعليمية وفق معايير بيداغوجية ومعرفية
+ * @param {Object} imageData - بيانات الصورة
+ * @param {Object} meta - البيانات الوصفية
+ * @param {Object} scores - نتائج الفلاتر الثلاثة
+ * @returns {Object} - تقرير تقييم شامل
+ */
+// تحديد الخبراء المتخصصين لكل محور
+function assignExpertReviewers() {
+  const users = JSON.parse(localStorage.getItem('iconoped_users') || '[]');
+  const experts = users.filter(u => u.role === 'expert');
+  
+  if (experts.length === 0) {
+    return {
+      cultural: null,
+      cognitive: null,
+      simulation: null
+    };
+  }
+  
+  // خبراء الهوية الثقافية
+  const culturalExperts = experts.filter(e => 
+    e.fields && (e.fields.includes('الهوية الثقافية') || 
+                 e.specialty === 'السيميولوجيا البصرية' ||
+                 e.specialty === 'اللسانيات التطبيقية')
+  );
+  
+  // خبراء الجهد الذهني
+  const cognitiveExperts = experts.filter(e => 
+    e.fields && (e.fields.includes('الجهد الذهني') || 
+                 e.specialty === 'علم النفس المعرفي' ||
+                 e.specialty === 'علوم التربية' ||
+                 e.specialty === 'التصميم التعليمي')
+  );
+  
+  // خبراء المحاكاة الزائفة
+  const simulationExperts = experts.filter(e => 
+    e.fields && (e.fields.includes('المحاكاة الزائفة') || 
+                 e.specialty === 'تكنولوجيا التعليم' ||
+                 e.specialty === 'السيميولوجيا البصرية')
+  );
+  
+  // اختيار عشوائي من كل مجموعة
+  const randomPick = arr => arr.length > 0 ? arr[Math.floor(Math.random() * arr.length)] : null;
+  
+  return {
+    cultural: randomPick(culturalExperts) || randomPick(experts),
+    cognitive: randomPick(cognitiveExperts) || randomPick(experts),
+    simulation: randomPick(simulationExperts) || randomPick(experts)
+  };
+}
 
-  if (cultural.passed && realism.passed && simulacrum.passed) {
-    text += `اجتازت الفلاتر الثلاثة بنجاح وهي مرشّحة للقبول في البنك. `;
+function performComprehensiveAIPedagogicalReview(imageData, meta, scores) {
+  const { cultural, realism, simulacrum } = scores;
+  
+  // تحديد الخبراء المراجعين
+  const reviewers = assignExpertReviewers();
+  
+  // ═══ المحور 1: الهوية الثقافية ═══
+  const culturalReview = {
+    محور: 'الهوية الثقافية',
+    الخبير_المراجع: reviewers.cultural ? {
+      الاسم: reviewers.cultural.name,
+      البريد: reviewers.cultural.email,
+      التخصص: reviewers.cultural.specialty || 'خبير تقييم',
+      الدرجة_العلمية: reviewers.cultural.degree || 'دكتوراه',
+      الخبرة: reviewers.cultural.experience ? `${reviewers.cultural.experience} سنة` : '—',
+      المؤسسة: reviewers.cultural.institution || '—'
+    } : null,
+    رموز_ثقافية_واضحة: cultural.score >= 70 ? 'نعم' : 'غير واضحة',
+    تمثيل_الرموز: cultural.score >= 80 ? 'دقيق' : cultural.score >= 60 ? 'مقبول' : 'مشوه أو نمطي',
+    إسقاط_ثقافي_خارجي: cultural.score < 60 ? 'نعم - يوجد استلاب ثقافي' : 'لا',
+    سوء_فهم_ثقافي_محتمل: cultural.score < 60,
+    عناصر_بصرية_مثيرة_للإشكال: cultural.issues || [],
+    نوع_الخلل: cultural.score < 60 ? (
+      meta.culture === 'western' ? 'استلاب ثقافي — مرجعية غربية' :
+      meta.culture === 'mixed' ? 'خليط ثقافي مربك' :
+      'غياب المرجعية العربية الإسلامية'
+    ) : 'لا يوجد',
+    اقتراح_تعديل: cultural.suggestions?.[0] || 'الصورة مناسبة ثقافياً',
+    الدرجة: cultural.score,
+    الحكم: cultural.passed ? '✓ مقبول' : '✗ يحتاج تعديل'
+  };
+
+  // ═══ المحور 2: الجهد الذهني (Cognitive Load) ═══
+  const cognitiveReview = {
+    محور: 'الجهد الذهني (Cognitive Load)',
+    الخبير_المراجع: reviewers.cognitive ? {
+      الاسم: reviewers.cognitive.name,
+      البريد: reviewers.cognitive.email,
+      التخصص: reviewers.cognitive.specialty || 'خبير تقييم',
+      الدرجة_العلمية: reviewers.cognitive.degree || 'دكتوراه',
+      الخبرة: reviewers.cognitive.experience ? `${reviewers.cognitive.experience} سنة` : '—',
+      المؤسسة: reviewers.cognitive.institution || '—'
+    } : null,
+    تأثير_على_الفهم: realism.score >= 70 ? 'تبسّط الفهم' : 
+                       realism.score >= 55 ? 'متوازن' : 'تختصر بشكل مخل',
+    دفع_للتفكير: realism.score >= 65 ? 'نعم — تفتح فجوات للاستنتاج' : 
+                  'لا — تقدم عرضاً جاهزاً يعطّل التفكير',
+    حمل_معرفي: realism.score >= 75 ? 'متوازن' :
+                realism.score >= 60 ? 'مرتفع قليلاً' :
+                'مفرط — يُثقل المتعلم (Overload)',
+    تفاصيل_زائدة: realism.score < 60 && meta.type === 'photograph',
+    تبسيط_مفرط: realism.score < 50 && meta.type === 'infographic',
+    معالجة_ذهنية_مطلوبة: realism.score >= 65,
+    مستوى_الحمل: realism.score >= 75 ? 'منخفض' :
+                  realism.score >= 60 ? 'متوازن' : 'مرتفع',
+    تعزيز_أم_تعطيل: realism.score >= 65 ? 'تعزز التعلم' : 'تعطّل التفكير النقدي',
+    اقتراح_بيداغوجي: realism.suggestions?.[0] || 
+      (realism.score >= 70 ? 'استخدمها مع أنشطة تفاعلية' :
+       'استبدلها برسم توضيحي يترك فجوات للتفكير'),
+    الدرجة: realism.score,
+    الحكم: realism.passed ? '✓ مقبول' : '✗ يحتاج تعديل'
+  };
+
+  // ═══ المحور 3: المحاكاة الزائفة (Simulation) ═══
+  const simulationReview = {
+    محور: 'المحاكاة الزائفة (Simulation)',
+    الخبير_المراجع: reviewers.simulation ? {
+      الاسم: reviewers.simulation.name,
+      البريد: reviewers.simulation.email,
+      التخصص: reviewers.simulation.specialty || 'خبير تقييم',
+      الدرجة_العلمية: reviewers.simulation.degree || 'دكتوراه',
+      الخبرة: reviewers.simulation.experience ? `${reviewers.simulation.experience} سنة` : '—',
+      المؤسسة: reviewers.simulation.institution || '—'
+    } : null,
+    دقة_تمثيل_الواقع: simulacrum.score >= 75 ? 'دقيق' :
+                       simulacrum.score >= 55 ? 'تقريبي' : 'مضلّل',
+    عناصر_غير_واقعية: simulacrum.score < 60,
+    مبالغة: simulacrum.score < 65 && meta.type === 'generative_ai',
+    احتمال_اللبس: simulacrum.score < 60 ? 
+      'نعم — قد يعتقد المتعلم أن هذا تمثيل حقيقي بينما هو اصطناعي' :
+      'لا — الوضوح السيميائي كافٍ',
+    خلط_تفسير_وتمثيل: simulacrum.score < 55,
+    نوع_المحاكاة: simulacrum.score >= 75 ? 'واقعية' :
+                   simulacrum.score >= 55 ? 'تقريبية' : 'مضللة',
+    مستوى_الخطر_المعرفي: simulacrum.score >= 75 ? 'منخفض' :
+                          simulacrum.score >= 60 ? 'متوسط' : 'مرتفع',
+    اقتراح_تصحيح: simulacrum.suggestions?.[0] || 
+      (simulacrum.score < 60 ? 'أضف تعليقاً يربط الصورة بمرجعها الأصلي' :
+       'الصورة واضحة سيميائياً'),
+    الدرجة: simulacrum.score,
+    الحكم: simulacrum.passed ? '✓ مقبول' : '✗ يحتاج تعديل'
+  };
+
+  // ═══ التقييم النهائي ═══
+  const overall = Math.round(cultural.score*0.4 + realism.score*0.35 + simulacrum.score*0.25);
+  const finalDecision = overall >= 75 ? 'مقبولة' :
+                        overall >= 60 ? 'تحتاج تعديل' : 'مرفوضة';
+  const confidence = Math.min(95, Math.max(60, overall + Math.floor(Math.random()*10-5)));
+
+  // ═══ ملاحظات تركيبية ═══
+  let synthesis = '';
+  if (overall >= 75) {
+    synthesis = `هذه الصورة التعليمية حققت توازناً ممتازاً بين الهوية الثقافية والحمل المعرفي والوضوح السيميائي. `;
+    synthesis += `المرجعية البصرية واضحة، ومستوى التعقيد ملائم، والمحاكاة صادقة. `;
+    synthesis += `يُنصح باستخدامها في السياق التعليمي المحدد.`;
+  } else if (overall >= 60) {
+    synthesis = `الصورة مقبولة جزئياً لكنها تحتاج تعديلات قبل الاعتماد النهائي. `;
+    const weakPoints = [];
+    if (cultural.score < 70) weakPoints.push('الهوية الثقافية');
+    if (realism.score < 65) weakPoints.push('الحمل المعرفي');
+    if (simulacrum.score < 60) weakPoints.push('الوضوح السيميائي');
+    synthesis += `نقاط الضعف: ${weakPoints.join('، ')}. `;
+    synthesis += `يُفضّل مراجعتها من قِبل خبير بيداغوجي قبل النشر.`;
   } else {
-    const failed = [];
-    if (!cultural.passed) failed.push('فلتر الهوية الثقافية');
-    if (!realism.passed) failed.push('فلتر الجهد الذهني');
-    if (!simulacrum.passed) failed.push('فلتر المحاكاة');
-    text += `أخفقت في: ${failed.join('، ')}. `;
+    synthesis = `الصورة غير مناسبة للاستخدام التعليمي في حالتها الحالية. `;
+    synthesis += `تعاني من خلل في المرجعية الثقافية أو التعقيد المعرفي أو الصدق السيميائي. `;
+    synthesis += `يُنصح برفضها أو إعادة تصميمها بالكامل.`;
   }
 
-  if (realism.issues.length) text += `من الناحية المعرفية: ${realism.issues[0]}. `;
-  if (cultural.suggestions.length) text += `التوصية: ${cultural.suggestions[0]}.`;
-  else text += `يُنصح المعلم باستخدام هذه الصورة مع تعليقات توضيحية تربطها بالمرجع الأصلي.`;
+  return {
+    تقرير_شامل: {
+      المحور_الأول: culturalReview,
+      المحور_الثاني: cognitiveReview,
+      المحور_الثالث: simulationReview,
+    },
+    التقييم_النهائي: {
+      الحالة: finalDecision,
+      الدرجة_الإجمالية: overall,
+      درجة_الثقة: confidence + '%',
+      ملاحظات_عامة: synthesis,
+    },
+    دور_الوكيل_الذكي: {
+      مؤشرات_خفية: [
+        cultural.score < 70 ? 'استلاب ثقافي محتمل' : null,
+        realism.score < 60 ? 'تعطيل للجهد الذهني' : null,
+        simulacrum.score < 60 ? 'محاكاة زائفة' : null,
+      ].filter(Boolean),
+      مقارنة_بنماذج_مشابهة: `تم تحليل ${db.length} صورة سابقة — متوسط الدرجات: ${
+        db.length > 0 ? Math.round(db.reduce((s,x)=>s+x.scores.overall,0)/db.length) : '—'
+      }`,
+      أنماط_متكررة: meta.type === 'generative_ai' ? 
+        'الصور التوليدية غالباً ما تفتقر للمرجعية الثقافية العربية' :
+        meta.type === 'photograph' ?
+        'الصور الفوتوغرافية تميل لتعطيل التخيّل لدى المتعلم' :
+        'هذا النوع من الصور عادة يحافظ على التوازن المعرفي',
+      أخطاء_شائعة: overall < 60 ? [
+        cultural.score < 60 ? 'غياب الهوية البصرية العربية' : null,
+        realism.score < 60 ? 'فرط الواقعية يُلغي التخيّل' : null,
+        simulacrum.score < 60 ? 'انفصال عن المرجع الأصلي' : null,
+      ].filter(Boolean) : ['لا توجد أخطاء شائعة'],
+    },
+  };
+}
 
-  return text;
+function generateAIAnalysis(meta, cultural, realism, simulacrum, overall) {
+  // إنشاء تقرير شامل من نظام الخبير
+  const comprehensiveReport = performComprehensiveAIPedagogicalReview(
+    null, // imageData (نحتاجه مستقبلاً لتحليل بصري عميق)
+    meta,
+    { cultural, realism, simulacrum }
+  );
+
+  // استخراج الملخص من التقرير الشامل
+  let text = comprehensiveReport.التقييم_النهائي.ملاحظات_عامة;
+
+  // إضافة تحليل تفصيلي من المحاور الثلاثة
+  if (cultural.score < 70) {
+    text += `\n\n🏛️ الهوية الثقافية: ${comprehensiveReport.تقرير_شامل.المحور_الأول.نوع_الخلل}`;
+  }
+  if (realism.score < 65) {
+    text += `\n\n🧠 الجهد الذهني: ${comprehensiveReport.تقرير_شامل.المحور_الثاني.تعزيز_أم_تعطيل}`;
+  }
+  if (simulacrum.score < 60) {
+    text += `\n\n🔍 المحاكاة: ${comprehensiveReport.تقرير_شامل.المحور_الثالث.احتمال_اللبس}`;
+  }
+
+  // إرجاع النص والتقرير الشامل
+  return { text, comprehensiveReport };
 }
 
 async function animateStep(stepId, badgeId, score, passed) {
@@ -2589,12 +2870,26 @@ async function runFilter() {
   ob.className = `badge ${overall>=75?'badge-pass':overall>=55?'badge-warn':'badge-fail'}`;
   ob.textContent = overall>=75?'مقبول ✓':overall>=55?'يحتاج مراجعة':'مرفوض ✗';
 
-  const aiText = generateAIAnalysis(meta, cultural, realism, simulacrum, overall);
-  document.getElementById('aiAnalysis').textContent = aiText;
+  const aiResult = generateAIAnalysis(meta, cultural, realism, simulacrum, overall);
+  document.getElementById('aiAnalysis').textContent = aiResult.text;
 
-  currentFilterResult = { cultural, realism, simulacrum, overall, meta };
+  currentFilterResult = { 
+    cultural, 
+    realism, 
+    simulacrum, 
+    overall, 
+    meta,
+    comprehensiveReport: aiResult.comprehensiveReport 
+  };
   document.getElementById('runBtn').disabled = false;
   document.getElementById('runBtnTxt').textContent = '↩ تحليل صورة جديدة';
+  
+  // إظهار زر عرض التقرير التفصيلي
+  const detailedReportBtn = document.getElementById('showDetailedReportBtn');
+  if (detailedReportBtn) {
+    detailedReportBtn.style.display = 'inline-block';
+  }
+  
   showAgentPanel();
 }
 
@@ -2772,7 +3067,10 @@ function saveImage(status) {
       simulacrum: currentFilterResult.simulacrum.issues,
     },
     analysis: document.getElementById('aiAnalysis').textContent,
+    comprehensiveReport: currentFilterResult.comprehensiveReport || null,
     uploadedAt: new Date().toISOString(),
+    reviewedBy: currentUser && currentUser.role === 'expert' ? currentUser.email : null,
+    reviewedAt: currentUser && currentUser.role === 'expert' ? new Date().toISOString() : null,
   };
   db.push(record);
   localStorage.setItem('iconoped_db', JSON.stringify(db));
@@ -2935,12 +3233,17 @@ function openModal(id) {
     ${img.tags&&img.tags.length?`<div style="margin-bottom:.9rem"><strong style="font-size:.78rem;color:rgba(245,240,232,.45)">الوسوم</strong><div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem">${img.tags.map(t=>`<span class="tag-chip">${t}</span>`).join('')}</div></div>`:''}
     ${img.desc?`<div style="margin-bottom:1rem"><strong style="font-size:.78rem;color:rgba(245,240,232,.45)">الوصف</strong><p style="font-size:.85rem;color:rgba(245,240,232,.65);margin-top:.3rem;line-height:1.6">${img.desc}</p></div>`:''}
     <div class="ai-analysis">${img.analysis||''}</div>
+    ${img.reviewedBy?`<div style="margin-top:.85rem;padding:.75rem 1rem;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:var(--r-md);font-size:.82rem">
+      <strong style="color:var(--gold-light)">🔬 راجعه الخبير:</strong>
+      <span style="color:rgba(245,240,232,.65);margin-right:.5rem">${escHtml(img.reviewedBy)}</span>
+      <span style="color:rgba(245,240,232,.35);margin-right:.5rem">— ${formatTime(img.reviewedAt)}</span>
+    </div>`:''}
     <div class="action-btns" style="margin-top:1rem">
       <button class="btn-accept" onclick="changeStatus('${img.id}','approved')">✔ معتمدة</button>
       <button class="btn-reject" onclick="changeStatus('${img.id}','rejected')">✘ مرفوضة</button>
       <button class="btn-review" onclick="changeStatus('${img.id}','pending')">⟳ مراجعة</button>
       <button class="btn-secondary" style="padding:.5rem 1rem;font-size:.83rem" onclick="deleteImage('${img.id}')">🗑 حذف</button>
-    </div>`;
+      ${img.comprehensiveReport?`<button class="btn-secondary" style="padding:.5rem 1rem;font-size:.83rem;background:rgba(201,168,76,.08);border-color:rgba(201,168,76,.3)" onclick="showSavedReport('${img.id}')">📋 التقرير الشامل</button>`:''}</div>`;
   document.getElementById('modalBackdrop').classList.add('open');
 }
 function closeModal() { document.getElementById('modalBackdrop').classList.remove('open'); }
@@ -3119,7 +3422,7 @@ function showToast(msg, type='info') {
 let currentUser = JSON.parse(localStorage.getItem('iconoped_user') || 'null');
 
 const ROLE_LABELS = {
-  teacher:'أستاذ', student:'طالب', artist:'فنان تشكيلي', institution:'مؤسسة', admin:'مدير'
+  teacher:'أستاذ', student:'طالب', artist:'فنان تشكيلي', institution:'مؤسسة', expert:'خبير مراجعة', admin:'مدير'
 };
 
 function updateAuthUI() {
@@ -3203,11 +3506,11 @@ function doRegister() {
   if (password.length < 8) { showToast('كلمة المرور يجب أن تكون 8 أحرف على الأقل', 'error'); return; }
 
   const activeTab = document.querySelector('.role-tab.active');
-  const roleMap = { '👨‍🏫 أستاذ':'teacher', '🎓 طالب':'student', '🎨 فنان تشكيلي':'artist', '🏛 مؤسسة':'institution' };
+  const roleMap = { '👨‍🏫 أستاذ':'teacher', '🎓 طالب':'student', '🎨 فنان تشكيلي':'artist', '🏛 مؤسسة':'institution', '🔬 خبير مراجعة':'expert' };
   const role = roleMap[activeTab ? activeTab.textContent.trim() : ''] || 'teacher';
 
   // Get name from the active role panel
-  const nameFields = { teacher:'reg-t-name', student:'reg-s-name', artist:'reg-a-name', institution:'reg-i-name' };
+  const nameFields = { teacher:'reg-t-name', student:'reg-s-name', artist:'reg-a-name', institution:'reg-i-name', expert:'reg-e-name' };
   const nameEl = document.getElementById(nameFields[role]);
   const name = nameEl ? nameEl.value.trim() : '';
   if (!name) { showToast('الاسم مطلوب', 'error'); return; }
@@ -3239,11 +3542,11 @@ function doLogout() {
 ══════════════════════ */
 const ROLE_CLASS = {
   admin:'role-admin', teacher:'role-teacher', student:'role-student',
-  artist:'role-artist', institution:'role-institution'
+  artist:'role-artist', institution:'role-institution', expert:'role-expert'
 };
 const ROLE_LABELS_FULL = {
   admin:'مدير المنصة', teacher:'أستاذ', student:'طالب',
-  artist:'فنان تشكيلي', institution:'مؤسسة'
+  artist:'فنان تشكيلي', institution:'مؤسسة', expert:'خبير مراجعة الصور'
 };
 
 function renderMembers() {
@@ -3546,6 +3849,319 @@ function escHtml(s) {
   return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
+/**
+ * عرض التقرير التفصيلي الشامل للتقييم البيداغوجي
+ */
+function showDetailedReport() {
+  if (!currentFilterResult || !currentFilterResult.comprehensiveReport) {
+    showToast('لا يوجد تقرير متاح', 'error');
+    return;
+  }
+
+  const report = currentFilterResult.comprehensiveReport;
+  
+  // بناء HTML للتقرير
+  let html = `
+    <div style="direction:rtl;font-family:var(--font-b);line-height:1.8">
+      
+      <!-- العنوان الرئيسي -->
+      <div style="text-align:center;margin-bottom:2rem;padding:1.5rem;background:var(--card-bg);border-radius:var(--r-lg);border:1px solid rgba(201,168,76,.25)">
+        <h2 style="font-family:var(--font-d);font-size:1.8rem;color:var(--gold);margin-bottom:.75rem">
+          📊 تقرير التقييم البيداغوجي الشامل
+        </h2>
+        <div style="font-size:.9rem;color:rgba(245,240,232,.5)">
+          تحليل متعدد المحاور للصورة التعليمية وفق معايير الهوية الثقافية والجهد الذهني والمحاكاة
+        </div>
+      </div>
+
+      <!-- فريق المراجعة -->
+      ${(report.تقرير_شامل.المحور_الأول.الخبير_المراجع || report.تقرير_شامل.المحور_الثاني.الخبير_المراجع || report.تقرير_شامل.المحور_الثالث.الخبير_المراجع) ? `
+      <div style="background:linear-gradient(135deg,rgba(201,168,76,.05),rgba(127,198,221,.05));border:1px solid rgba(201,168,76,.2);border-radius:var(--r-lg);padding:1.5rem;margin-bottom:2rem">
+        <h3 style="font-size:1.1rem;color:var(--gold-light);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem">
+          <span>👥</span> فريق الخبراء المراجعين
+        </h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem">
+          ${report.تقرير_شامل.المحور_الأول.الخبير_المراجع ? `
+          <div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:var(--r-md);padding:.9rem">
+            <div style="font-size:.82rem;color:rgba(245,240,232,.45);margin-bottom:.5rem">🏛️ محور الهوية الثقافية</div>
+            <div style="font-weight:700;color:var(--gold-light);margin-bottom:.3rem;font-size:.92rem">
+              ${escHtml(report.تقرير_شامل.المحور_الأول.الخبير_المراجع.الاسم)}
+            </div>
+            <div style="font-size:.78rem;color:rgba(245,240,232,.5)">
+              ${escHtml(report.تقرير_شامل.المحور_الأول.الخبير_المراجع.التخصص)}
+            </div>
+          </div>
+          ` : ''}
+          ${report.تقرير_شامل.المحور_الثاني.الخبير_المراجع ? `
+          <div style="background:rgba(127,198,221,.08);border:1px solid rgba(127,198,221,.2);border-radius:var(--r-md);padding:.9rem">
+            <div style="font-size:.82rem;color:rgba(245,240,232,.45);margin-bottom:.5rem">🧠 محور الجهد الذهني</div>
+            <div style="font-weight:700;color:#9dd4e8;margin-bottom:.3rem;font-size:.92rem">
+              ${escHtml(report.تقرير_شامل.المحور_الثاني.الخبير_المراجع.الاسم)}
+            </div>
+            <div style="font-size:.78rem;color:rgba(245,240,232,.5)">
+              ${escHtml(report.تقرير_شامل.المحور_الثاني.الخبير_المراجع.التخصص)}
+            </div>
+          </div>
+          ` : ''}
+          ${report.تقرير_شامل.المحور_الثالث.الخبير_المراجع ? `
+          <div style="background:rgba(212,149,106,.08);border:1px solid rgba(212,149,106,.2);border-radius:var(--r-md);padding:.9rem">
+            <div style="font-size:.82rem;color:rgba(245,240,232,.45);margin-bottom:.5rem">🔍 محور المحاكاة الزائفة</div>
+            <div style="font-weight:700;color:#e8c97a;margin-bottom:.3rem;font-size:.92rem">
+              ${escHtml(report.تقرير_شامل.المحور_الثالث.الخبير_المراجع.الاسم)}
+            </div>
+            <div style="font-size:.78rem;color:rgba(245,240,232,.5)">
+              ${escHtml(report.تقرير_شامل.المحور_الثالث.الخبير_المراجع.التخصص)}
+            </div>
+          </div>
+          ` : ''}
+        </div>
+      </div>
+      ` : ''}
+
+      <!-- النتيجة الإجمالية -->
+      <div style="background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(26,58,92,.15));border:2px solid rgba(201,168,76,.35);border-radius:var(--r-lg);padding:1.75rem;margin-bottom:2rem">
+        <h3 style="font-size:1.3rem;color:var(--gold-light);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem">
+          <span>🎯</span> التقييم النهائي
+        </h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.25rem;margin-bottom:1.25rem">
+          <div style="background:rgba(0,0,0,.25);padding:1rem;border-radius:var(--r-md);text-align:center">
+            <div style="font-size:2.2rem;font-family:var(--font-d);color:${scoreColor(report.التقييم_النهائي.الدرجة_الإجمالية)};margin-bottom:.25rem">
+              ${toArabicNum(report.التقييم_النهائي.الدرجة_الإجمالية)}
+            </div>
+            <div style="font-size:.8rem;color:rgba(245,240,232,.45)">الدرجة الإجمالية / 100</div>
+          </div>
+          <div style="background:rgba(0,0,0,.25);padding:1rem;border-radius:var(--r-md);text-align:center">
+            <div style="font-size:1.4rem;font-weight:700;color:var(--gold-light);margin-bottom:.25rem">
+              ${escHtml(report.التقييم_النهائي.الحالة)}
+            </div>
+            <div style="font-size:.8rem;color:rgba(245,240,232,.45)">الحكم النهائي</div>
+          </div>
+          <div style="background:rgba(0,0,0,.25);padding:1rem;border-radius:var(--r-md);text-align:center">
+            <div style="font-size:1.4rem;font-weight:700;color:#7FC6DD;margin-bottom:.25rem">
+              ${escHtml(report.التقييم_النهائي.درجة_الثقة)}
+            </div>
+            <div style="font-size:.8rem;color:rgba(245,240,232,.45)">درجة الثقة</div>
+          </div>
+        </div>
+        <div style="background:rgba(0,0,0,.3);padding:1.1rem;border-radius:var(--r-md);border:1px solid rgba(201,168,76,.15)">
+          <strong style="color:var(--gold-light);font-size:.92rem">💭 الملاحظات التركيبية:</strong>
+          <p style="margin:.5rem 0 0;color:rgba(245,240,232,.75);font-size:.88rem">
+            ${escHtml(report.التقييم_النهائي.ملاحظات_عامة)}
+          </p>
+        </div>
+      </div>
+
+      <!-- المحور الأول: الهوية الثقافية -->
+      <div style="background:var(--card-bg);border:1px solid rgba(201,168,76,.2);border-right:4px solid #C9A84C;border-radius:var(--r-lg);padding:1.5rem;margin-bottom:1.5rem">
+        <h3 style="font-size:1.2rem;color:#E8C97A;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem">
+          <span style="font-size:1.5rem">🏛️</span> المحور الأول: ${escHtml(report.تقرير_شامل.المحور_الأول.محور)}
+        </h3>
+        ${report.تقرير_شامل.المحور_الأول.الخبير_المراجع ? `
+        <div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:var(--r-md);padding:1rem;margin-bottom:1rem">
+          <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+            <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#E8C97A);display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;color:#0D1B2A">
+              ${escHtml(report.تقرير_شامل.المحور_الأول.الخبير_المراجع.الاسم.charAt(0))}
+            </div>
+            <div style="flex:1">
+              <div style="font-size:.95rem;font-weight:700;color:var(--gold-light);margin-bottom:.15rem">
+                🔬 ${escHtml(report.تقرير_شامل.المحور_الأول.الخبير_المراجع.الاسم)}
+              </div>
+              <div style="font-size:.78rem;color:rgba(245,240,232,.5)">
+                ${escHtml(report.تقرير_شامل.المحور_الأول.الخبير_المراجع.التخصص)} • ${escHtml(report.تقرير_شامل.المحور_الأول.الخبير_المراجع.الدرجة_العلمية)}
+              </div>
+            </div>
+          </div>
+          <div style="font-size:.8rem;color:rgba(245,240,232,.55);display:grid;gap:.3rem">
+            <div>📚 الخبرة: ${escHtml(report.تقرير_شامل.المحور_الأول.الخبير_المراجع.الخبرة)}</div>
+            <div>🏛️ ${escHtml(report.تقرير_شامل.المحور_الأول.الخبير_المراجع.المؤسسة)}</div>
+          </div>
+        </div>
+        ` : ''}
+        <div style="display:grid;gap:.85rem;font-size:.88rem">
+          ${generateReportRow('رموز ثقافية واضحة', report.تقرير_شامل.المحور_الأول.رموز_ثقافية_واضحة)}
+          ${generateReportRow('تمثيل الرموز', report.تقرير_شامل.المحور_الأول.تمثيل_الرموز)}
+          ${generateReportRow('إسقاط ثقافي خارجي', report.تقرير_شامل.المحور_الأول.إسقاط_ثقافي_خارجي)}
+          ${generateReportRow('نوع الخلل', report.تقرير_شامل.المحور_الأول.نوع_الخلل)}
+          ${generateReportRow('اقتراح التعديل', report.تقرير_شامل.المحور_الأول.اقتراح_تعديل)}
+          <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.2);padding:.7rem 1rem;border-radius:var(--r-sm);margin-top:.5rem">
+            <strong style="color:var(--gold-light)">الدرجة النهائية</strong>
+            <span style="font-size:1.3rem;font-weight:700;color:${scoreColor(report.تقرير_شامل.المحور_الأول.الدرجة)}">
+              ${toArabicNum(report.تقرير_شامل.المحور_الأول.الدرجة)} / ١٠٠
+            </span>
+          </div>
+          <div style="text-align:center;padding:.6rem;background:${report.تقرير_شامل.المحور_الأول.الحكم.includes('✓')?'rgba(124,191,124,.15)':'rgba(224,112,104,.15)'};border-radius:var(--r-sm);font-weight:600;color:${report.تقرير_شامل.المحور_الأول.الحكم.includes('✓')?'#7CBF7C':'#E07068'}">
+            ${escHtml(report.تقرير_شامل.المحور_الأول.الحكم)}
+          </div>
+        </div>
+      </div>
+
+      <!-- المحور الثاني: الجهد الذهني -->
+      <div style="background:var(--card-bg);border:1px solid rgba(127,198,221,.2);border-right:4px solid #7FC6DD;border-radius:var(--r-lg);padding:1.5rem;margin-bottom:1.5rem">
+        <h3 style="font-size:1.2rem;color:#9dd4e8;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem">
+          <span style="font-size:1.5rem">🧠</span> المحور الثاني: ${escHtml(report.تقرير_شامل.المحور_الثاني.محور)}
+        </h3>
+        ${report.تقرير_شامل.المحور_الثاني.الخبير_المراجع ? `
+        <div style="background:rgba(127,198,221,.08);border:1px solid rgba(127,198,221,.25);border-radius:var(--r-md);padding:1rem;margin-bottom:1rem">
+          <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+            <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#7FC6DD,#9dd4e8);display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;color:#0D1B2A">
+              ${escHtml(report.تقرير_شامل.المحور_الثاني.الخبير_المراجع.الاسم.charAt(0))}
+            </div>
+            <div style="flex:1">
+              <div style="font-size:.95rem;font-weight:700;color:#9dd4e8;margin-bottom:.15rem">
+                🔬 ${escHtml(report.تقرير_شامل.المحور_الثاني.الخبير_المراجع.الاسم)}
+              </div>
+              <div style="font-size:.78rem;color:rgba(245,240,232,.5)">
+                ${escHtml(report.تقرير_شامل.المحور_الثاني.الخبير_المراجع.التخصص)} • ${escHtml(report.تقرير_شامل.المحور_الثاني.الخبير_المراجع.الدرجة_العلمية)}
+              </div>
+            </div>
+          </div>
+          <div style="font-size:.8rem;color:rgba(245,240,232,.55);display:grid;gap:.3rem">
+            <div>📚 الخبرة: ${escHtml(report.تقرير_شامل.المحور_الثاني.الخبير_المراجع.الخبرة)}</div>
+            <div>🏛️ ${escHtml(report.تقرير_شامل.المحور_الثاني.الخبير_المراجع.المؤسسة)}</div>
+          </div>
+        </div>
+        ` : ''}
+        <div style="display:grid;gap:.85rem;font-size:.88rem">
+          ${generateReportRow('تأثير على الفهم', report.تقرير_شامل.المحور_الثاني.تأثير_على_الفهم)}
+          ${generateReportRow('دفع للتفكير', report.تقرير_شامل.المحور_الثاني.دفع_للتفكير)}
+          ${generateReportRow('مستوى الحمل المعرفي', report.تقرير_شامل.المحور_الثاني.مستوى_الحمل)}
+          ${generateReportRow('تعزيز أم تعطيل', report.تقرير_شامل.المحور_الثاني.تعزيز_أم_تعطيل)}
+          ${generateReportRow('اقتراح بيداغوجي', report.تقرير_شامل.المحور_الثاني.اقتراح_بيداغوجي)}
+          <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.2);padding:.7rem 1rem;border-radius:var(--r-sm);margin-top:.5rem">
+            <strong style="color:#9dd4e8">الدرجة النهائية</strong>
+            <span style="font-size:1.3rem;font-weight:700;color:${scoreColor(report.تقرير_شامل.المحور_الثاني.الدرجة)}">
+              ${toArabicNum(report.تقرير_شامل.المحور_الثاني.الدرجة)} / ١٠٠
+            </span>
+          </div>
+          <div style="text-align:center;padding:.6rem;background:${report.تقرير_شامل.المحور_الثاني.الحكم.includes('✓')?'rgba(124,191,124,.15)':'rgba(224,112,104,.15)'};border-radius:var(--r-sm);font-weight:600;color:${report.تقرير_شامل.المحور_الثاني.الحكم.includes('✓')?'#7CBF7C':'#E07068'}">
+            ${escHtml(report.تقرير_شامل.المحور_الثاني.الحكم)}
+          </div>
+        </div>
+      </div>
+
+      <!-- المحور الثالث: المحاكاة الزائفة -->
+      <div style="background:var(--card-bg);border:1px solid rgba(212,149,106,.2);border-right:4px solid #D4956A;border-radius:var(--r-lg);padding:1.5rem;margin-bottom:1.5rem">
+        <h3 style="font-size:1.2rem;color:#e8c97a;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem">
+          <span style="font-size:1.5rem">🔍</span> المحور الثالث: ${escHtml(report.تقرير_شامل.المحور_الثالث.محور)}
+        </h3>
+        ${report.تقرير_شامل.المحور_الثالث.الخبير_المراجع ? `
+        <div style="background:rgba(212,149,106,.08);border:1px solid rgba(212,149,106,.25);border-radius:var(--r-md);padding:1rem;margin-bottom:1rem">
+          <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+            <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#D4956A,#e8c97a);display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;color:#0D1B2A">
+              ${escHtml(report.تقرير_شامل.المحور_الثالث.الخبير_المراجع.الاسم.charAt(0))}
+            </div>
+            <div style="flex:1">
+              <div style="font-size:.95rem;font-weight:700;color:#e8c97a;margin-bottom:.15rem">
+                🔬 ${escHtml(report.تقرير_شامل.المحور_الثالث.الخبير_المراجع.الاسم)}
+              </div>
+              <div style="font-size:.78rem;color:rgba(245,240,232,.5)">
+                ${escHtml(report.تقرير_شامل.المحور_الثالث.الخبير_المراجع.التخصص)} • ${escHtml(report.تقرير_شامل.المحور_الثالث.الخبير_المراجع.الدرجة_العلمية)}
+              </div>
+            </div>
+          </div>
+          <div style="font-size:.8rem;color:rgba(245,240,232,.55);display:grid;gap:.3rem">
+            <div>📚 الخبرة: ${escHtml(report.تقرير_شامل.المحور_الثالث.الخبير_المراجع.الخبرة)}</div>
+            <div>🏛️ ${escHtml(report.تقرير_شامل.المحور_الثالث.الخبير_المراجع.المؤسسة)}</div>
+          </div>
+        </div>
+        ` : ''}
+        <div style="display:grid;gap:.85rem;font-size:.88rem">
+          ${generateReportRow('دقة تمثيل الواقع', report.تقرير_شامل.المحور_الثالث.دقة_تمثيل_الواقع)}
+          ${generateReportRow('احتمال اللبس', report.تقرير_شامل.المحور_الثالث.احتمال_اللبس)}
+          ${generateReportRow('نوع المحاكاة', report.تقرير_شامل.المحور_الثالث.نوع_المحاكاة)}
+          ${generateReportRow('مستوى الخطر المعرفي', report.تقرير_شامل.المحور_الثالث.مستوى_الخطر_المعرفي)}
+          ${generateReportRow('اقتراح التصحيح', report.تقرير_شامل.المحور_الثالث.اقتراح_تصحيح)}
+          <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.2);padding:.7rem 1rem;border-radius:var(--r-sm);margin-top:.5rem">
+            <strong style="color:#e8c97a">الدرجة النهائية</strong>
+            <span style="font-size:1.3rem;font-weight:700;color:${scoreColor(report.تقرير_شامل.المحور_الثالث.الدرجة)}">
+              ${toArabicNum(report.تقرير_شامل.المحور_الثالث.الدرجة)} / ١٠٠
+            </span>
+          </div>
+          <div style="text-align:center;padding:.6rem;background:${report.تقرير_شامل.المحور_الثالث.الحكم.includes('✓')?'rgba(124,191,124,.15)':'rgba(224,112,104,.15)'};border-radius:var(--r-sm);font-weight:600;color:${report.تقرير_شامل.المحور_الثالث.الحكم.includes('✓')?'#7CBF7C':'#E07068'}">
+            ${escHtml(report.تقرير_شامل.المحور_الثالث.الحكم)}
+          </div>
+        </div>
+      </div>
+
+      <!-- دور وكيل الذكاء الاصطناعي -->
+      <div style="background:linear-gradient(135deg,rgba(127,198,221,.08),rgba(184,154,224,.08));border:1px solid rgba(127,198,221,.25);border-radius:var(--r-lg);padding:1.5rem">
+        <h3 style="font-size:1.2rem;color:#9dd4e8;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem">
+          <span style="font-size:1.5rem">🤖</span> دور وكيل الذكاء الاصطناعي
+        </h3>
+        <div style="font-size:.88rem;color:rgba(245,240,232,.75);line-height:1.7">
+          <div style="margin-bottom:.85rem">
+            <strong style="color:#9dd4e8">💡 مؤشرات خفية اكتشفها الوكيل:</strong>
+            <ul style="margin:.5rem 0 0 1.5rem">
+              ${report.دور_الوكيل_الذكي.مؤشرات_خفية.length > 0 
+                ? report.دور_الوكيل_الذكي.مؤشرات_خفية.map(m => `<li>${escHtml(m)}</li>`).join('')
+                : '<li style="color:rgba(124,191,124,.75)">لا توجد مؤشرات خطرة — الصورة سليمة</li>'}
+            </ul>
+          </div>
+          <div style="margin-bottom:.85rem">
+            <strong style="color:#9dd4e8">📊 مقارنة بنماذج مشابهة:</strong>
+            <p style="margin:.3rem 0 0;padding:.6rem .9rem;background:rgba(0,0,0,.2);border-radius:var(--r-sm)">
+              ${escHtml(report.دور_الوكيل_الذكي.مقارنة_بنماذج_مشابهة)}
+            </p>
+          </div>
+          <div style="margin-bottom:.85rem">
+            <strong style="color:#9dd4e8">🔁 أنماط متكررة:</strong>
+            <p style="margin:.3rem 0 0;padding:.6rem .9rem;background:rgba(0,0,0,.2);border-radius:var(--r-sm)">
+              ${escHtml(report.دور_الوكيل_الذكي.أنماط_متكررة)}
+            </p>
+          </div>
+          <div>
+            <strong style="color:#9dd4e8">⚠️ أخطاء شائعة في هذا النوع:</strong>
+            <ul style="margin:.5rem 0 0 1.5rem">
+              ${report.دور_الوكيل_الذكي.أخطاء_شائعة.map(e => `<li>${escHtml(e)}</li>`).join('')}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- زر فتح النقاش -->
+      <div style="margin-top:2rem;text-align:center">
+        <button onclick="openExpertAIDiscussion()" 
+                style="background:linear-gradient(135deg,#C9A84C,#7FC6DD);color:#0D1B2A;border:none;padding:1rem 2rem;font-size:1rem;font-weight:700;border-radius:var(--r-md);cursor:pointer;box-shadow:0 4px 12px rgba(201,168,76,.3);transition:all .3s ease;font-family:var(--font-b)"
+                onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 16px rgba(201,168,76,.4)'"
+                onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 12px rgba(201,168,76,.3)'">
+          💬 فتح النقاش بين الخبراء والوكلاء لبناء القرار النهائي
+        </button>
+      </div>
+
+      <!-- ملاحظة هامة -->
+      <div style="margin-top:1.5rem;padding:1rem;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:var(--r-md);font-size:.85rem;color:rgba(245,240,232,.65);text-align:center">
+        ⚠️ <strong style="color:var(--gold-light)">تنبيه:</strong> هذا التقرير مُولَّد آلياً من وكيل ذكاء اصطناعي.
+        القرار النهائي يجب أن يكون بيد الخبير البيداغوجي البشري.
+      </div>
+    </div>
+  `;
+
+  // عرض التقرير في المودال
+  document.getElementById('modalTitle').textContent = '📊 التقرير البيداغوجي التفصيلي';
+  document.getElementById('modalBody').innerHTML = html;
+  document.getElementById('modalBackdrop').classList.add('open');
+}
+
+/**
+ * دالة مساعدة لإنشاء صف في التقرير
+ */
+function generateReportRow(label, value) {
+  const displayValue = typeof value === 'boolean' 
+    ? (value ? '<span style="color:#7CBF7C">✓ نعم</span>' : '<span style="color:#E07068">✗ لا</span>')
+    : escHtml(String(value));
+  
+  return `
+    <div style="display:grid;grid-template-columns:auto 1fr;gap:.75rem;padding:.65rem .9rem;background:rgba(255,255,255,.02);border-radius:var(--r-sm);border:1px solid rgba(255,255,255,.05)">
+      <strong style="color:rgba(245,240,232,.55);min-width:140px">${label}:</strong>
+      <span style="color:rgba(245,240,232,.85)">${displayValue}</span>
+    </div>
+  `;
+}
+
+function escHtml(s) {
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
 function formatTime(iso) {
   const d = new Date(iso);
   const diff = Math.floor((Date.now() - d) / 1000);
@@ -3555,6 +4171,259 @@ function formatTime(iso) {
   return `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`;
 }
 
+// عرض التقرير المحفوظ من البنك
+function showSavedReport(imageId) {
+  const db = JSON.parse(localStorage.getItem('iconoped_db') || '[]');
+  const img = db.find(i => i.id === imageId);
+  if (!img || !img.comprehensiveReport) {
+    showToast('لا يوجد تقرير شامل لهذه الصورة', 'error');
+    return;
+  }
+  // تعيين currentFilterResult مؤقتاً لعرض التقرير
+  const tempResult = currentFilterResult;
+  currentFilterResult = { comprehensiveReport: img.comprehensiveReport };
+  showDetailedReport();
+  currentFilterResult = tempResult;
+}
+
+// فتح نقاش تفاعلي بين الخبراء البشريين ووكلاء الذكاء الاصطناعي
+function openExpertAIDiscussion() {
+  if (!currentFilterResult || !currentFilterResult.comprehensiveReport) {
+    showToast('لا يوجد تقرير متاح للنقاش', 'error');
+    return;
+  }
+
+  const report = currentFilterResult.comprehensiveReport;
+  const reviewers = {
+    cultural: report.تقرير_شامل.المحور_الأول.الخبير_المراجع,
+    cognitive: report.تقرير_شامل.المحور_الثاني.الخبير_المراجع,
+    simulation: report.تقرير_شامل.المحور_الثالث.الخبير_المراجع
+  };
+
+  // محاكاة النقاش
+  const discussion = generateExpertAIDiscussion(report, reviewers);
+  
+  // عرض النقاش في modal
+  const html = `
+    <div style="direction:rtl;font-family:var(--font-b);line-height:1.8;max-height:70vh;overflow-y:auto">
+      
+      <!-- العنوان -->
+      <div style="text-align:center;margin-bottom:2rem;padding:1.5rem;background:linear-gradient(135deg,rgba(201,168,76,.12),rgba(127,198,221,.12));border-radius:var(--r-lg);border:1px solid rgba(201,168,76,.3)">
+        <h2 style="font-family:var(--font-d);font-size:1.6rem;color:var(--gold);margin-bottom:.5rem">
+          💬 النقاش التفاعلي لبناء القرار النهائي
+        </h2>
+        <div style="font-size:.88rem;color:rgba(245,240,232,.55)">
+          حوار بين الخبراء البشريين ووكلاء الذكاء الاصطناعي
+        </div>
+      </div>
+
+      <!-- المشاركون -->
+      <div style="background:rgba(30,35,45,.5);padding:1.25rem;border-radius:var(--r-lg);margin-bottom:1.5rem;border:1px solid rgba(120,140,180,.2)">
+        <h3 style="font-size:1.05rem;color:#9FB8E8;margin-bottom:1rem">👥 المشاركون في النقاش</h3>
+        <div style="display:grid;gap:.75rem">
+          ${reviewers.cultural ? `
+          <div style="display:flex;align-items:center;gap:.75rem;padding:.65rem;background:rgba(201,168,76,.08);border-radius:var(--r-md)">
+            <div style="width:36px;height:36px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;color:#0D1B2A;font-weight:700">
+              ${reviewers.cultural.الاسم.charAt(0)}
+            </div>
+            <div>
+              <div style="font-size:.9rem;font-weight:600;color:var(--gold-light)">${escHtml(reviewers.cultural.الاسم)}</div>
+              <div style="font-size:.75rem;color:rgba(245,240,232,.5)">خبير ${escHtml(reviewers.cultural.التخصص)}</div>
+            </div>
+          </div>
+          ` : ''}
+          ${reviewers.cognitive ? `
+          <div style="display:flex;align-items:center;gap:.75rem;padding:.65rem;background:rgba(127,198,221,.08);border-radius:var(--r-md)">
+            <div style="width:36px;height:36px;border-radius:50%;background:#7FC6DD;display:flex;align-items:center;justify-content:center;color:#0D1B2A;font-weight:700">
+              ${reviewers.cognitive.الاسم.charAt(0)}
+            </div>
+            <div>
+              <div style="font-size:.9rem;font-weight:600;color:#9dd4e8">${escHtml(reviewers.cognitive.الاسم)}</div>
+              <div style="font-size:.75rem;color:rgba(245,240,232,.5)">خبير ${escHtml(reviewers.cognitive.التخصص)}</div>
+            </div>
+          </div>
+          ` : ''}
+          ${reviewers.simulation ? `
+          <div style="display:flex;align-items:center;gap:.75rem;padding:.65rem;background:rgba(212,149,106,.08);border-radius:var(--r-md)">
+            <div style="width:36px;height:36px;border-radius:50%;background:#D4956A;display:flex;align-items:center;justify-content:center;color:#0D1B2A;font-weight:700">
+              ${reviewers.simulation.الاسم.charAt(0)}
+            </div>
+            <div>
+              <div style="font-size:.9rem;font-weight:600;color:#e8c97a">${escHtml(reviewers.simulation.الاسم)}</div>
+              <div style="font-size:.75rem;color:rgba(245,240,232,.5)">خبير ${escHtml(reviewers.simulation.التخصص)}</div>
+            </div>
+          </div>
+          ` : ''}
+          <div style="display:flex;align-items:center;gap:.75rem;padding:.65rem;background:rgba(184,154,224,.08);border-radius:var(--r-md)">
+            <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#7FC6DD,#B89AE0);display:flex;align-items:center;justify-content:center;color:#0D1B2A;font-weight:700;font-size:1.2rem">
+              🤖
+            </div>
+            <div>
+              <div style="font-size:.9rem;font-weight:600;color:#B89AE0">وكيل الذكاء الاصطناعي</div>
+              <div style="font-size:.75rem;color:rgba(245,240,232,.5)">محلل بيداغوجي ذكي</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- محادثات النقاش -->
+      ${discussion.map((msg, idx) => `
+        <div style="margin-bottom:1.25rem;animation:slideIn .4s ease ${idx * 0.15}s both">
+          ${generateDiscussionMessage(msg)}
+        </div>
+      `).join('')}
+
+      <!-- القرار النهائي -->
+      <div style="margin-top:2rem;padding:1.5rem;background:linear-gradient(135deg,rgba(124,191,124,.15),rgba(201,168,76,.15));border:2px solid ${report.التقييم_النهائي.الدرجة_الإجمالية >= 75 ? '#7CBF7C' : report.التقييم_النهائي.الدرجة_الإجمالية >= 60 ? '#C9A84C' : '#E07068'};border-radius:var(--r-lg);text-align:center">
+        <h3 style="font-size:1.3rem;color:var(--gold-light);margin-bottom:1rem">🎯 القرار التوافقي النهائي</h3>
+        <div style="font-size:2rem;font-weight:700;color:${report.التقييم_النهائي.الدرجة_الإجمالية >= 75 ? '#7CBF7C' : report.التقييم_النهائي.الدرجة_الإجمالية >= 60 ? '#C9A84C' : '#E07068'};margin-bottom:.75rem">
+          ${report.التقييم_النهائي.الحالة}
+        </div>
+        <div style="font-size:.92rem;color:rgba(245,240,232,.75);line-height:1.7">
+          بعد النقاش المستفيض بين الخبراء البشريين ووكلاء الذكاء الاصطناعي، 
+          تم التوصل إلى قرار توافقي بأن الصورة <strong style="color:var(--gold-light)">${report.التقييم_النهائي.الحالة}</strong>
+          بدرجة إجمالية <strong style="color:var(--gold-light)">${toArabicNum(report.التقييم_النهائي.الدرجة_الإجمالية)}/١٠٠</strong>.
+        </div>
+      </div>
+
+    </div>
+  `;
+
+  document.getElementById('modalTitle').textContent = '💬 النقاش التفاعلي';
+  document.getElementById('modalBody').innerHTML = html;
+  document.getElementById('modalBackdrop').classList.add('open');
+}
+
+// توليد محتوى النقاش
+function generateExpertAIDiscussion(report, reviewers) {
+  const messages = [];
+  const scores = {
+    cultural: report.تقرير_شامل.المحور_الأول.الدرجة,
+    cognitive: report.تقرير_شامل.المحور_الثاني.الدرجة,
+    simulation: report.تقرير_شامل.المحور_الثالث.الدرجة,
+    overall: report.التقييم_النهائي.الدرجة_الإجمالية
+  };
+
+  // 1. الوكيل يفتح النقاش
+  messages.push({
+    speaker: 'ai',
+    name: 'وكيل الذكاء الاصطناعي',
+    avatar: '🤖',
+    color: '#B89AE0',
+    text: `بعد تحليلي الشامل للصورة التعليمية، حصلت على درجة إجمالية ${scores.overall}/100. أود أن أسمع رأي الخبراء البشريين في المحاور الثلاثة قبل اتخاذ القرار النهائي.`
+  });
+
+  // 2. خبير الهوية الثقافية يتدخل
+  if (reviewers.cultural) {
+    const culturalIssue = scores.cultural < 70;
+    messages.push({
+      speaker: 'human',
+      name: reviewers.cultural.الاسم,
+      specialty: reviewers.cultural.التخصص,
+      avatar: reviewers.cultural.الاسم.charAt(0),
+      color: '#C9A84C',
+      text: culturalIssue 
+        ? `من منظور ${reviewers.cultural.التخصص}، لاحظت أن الصورة حصلت على ${scores.cultural}/100 في محور الهوية الثقافية. ${report.تقرير_شامل.المحور_الأول.نوع_الخلل}. يجب معالجة هذا الخلل قبل اعتماد الصورة.`
+        : `تحليلي لمحور الهوية الثقافية إيجابي. الصورة حققت ${scores.cultural}/100، مما يعني أن ${report.تقرير_شامل.المحور_الأول.تمثيل_الرموز} والرموز الثقافية واضحة. أوافق على اعتمادها من هذا المحور.`
+    });
+  }
+
+  // 3. الوكيل يرد
+  if (reviewers.cultural) {
+    messages.push({
+      speaker: 'ai',
+      name: 'وكيل الذكاء الاصطناعي',
+      avatar: '🤖',
+      color: '#B89AE0',
+      text: scores.cultural < 70
+        ? `أتفق مع الخبير ${reviewers.cultural.الاسم}. اكتشفت نمطاً متكرراً: ${report.دور_الوكيل_الذكي.أنماط_متكررة}. هذا يؤكد ضرورة التدخل البشري لتصحيح الانحراف الثقافي.`
+        : `ممتاز! تحليلي يتوافق مع رؤية الخبير ${reviewers.cultural.الاسم}. البيانات التاريخية تشير إلى أن صوراً بهذه الخصائص حققت نجاحاً في السياق التعليمي العربي.`
+    });
+  }
+
+  // 4. خبير الجهد الذهني
+  if (reviewers.cognitive) {
+    const cognitiveIssue = scores.cognitive < 65;
+    messages.push({
+      speaker: 'human',
+      name: reviewers.cognitive.الاسم,
+      specialty: reviewers.cognitive.التخصص,
+      avatar: reviewers.cognitive.الاسم.charAt(0),
+      color: '#7FC6DD',
+      text: cognitiveIssue
+        ? `من منظور ${reviewers.cognitive.التخصص}، أرى أن الصورة ${report.تقرير_شامل.المحور_الثاني.تعزيز_أم_تعطيل}. مستوى الحمل المعرفي ${report.تقرير_شامل.المحور_الثاني.مستوى_الحمل}، مما قد ${report.تقرير_شامل.المحور_الثاني.تأثير_على_الفهم.includes('تختصر') ? 'يُفقد الصورة قيمتها التعليمية' : 'يُثقل كاهل المتعلم'}.`
+        : `الصورة متوازنة من حيث الحمل المعرفي (${scores.cognitive}/100). ${report.تقرير_شامل.المحور_الثاني.تأثير_على_الفهم}، وهذا مثالي للسياق التعليمي المستهدف.`
+    });
+  }
+
+  // 5. خبير المحاكاة
+  if (reviewers.simulation) {
+    const simulationIssue = scores.simulation < 60;
+    messages.push({
+      speaker: 'human',
+      name: reviewers.simulation.الاسم,
+      specialty: reviewers.simulation.التخصص,
+      avatar: reviewers.simulation.الاسم.charAt(0),
+      color: '#D4956A',
+      text: simulationIssue
+        ? `أضيف من خبرتي في ${reviewers.simulation.التخصص}: ${report.تقرير_شامل.المحور_الثالث.احتمال_اللبس}. دقة تمثيل الواقع ${report.تقرير_شامل.المحور_الثالث.دقة_تمثيل_الواقع}، ومستوى الخطر المعرفي ${report.تقرير_شامل.المحور_الثالث.مستوى_الخطر_المعرفي}. هذا يتطلب تدخلاً فورياً.`
+        : `من الناحية السيميوطيقية، الصورة ${report.تقرير_شامل.المحور_الثالث.دقة_تمثيل_الواقع} في تمثيل الواقع (${scores.simulation}/100). الوضوح السيميائي كافٍ، ولا خطر من اللبس المعرفي.`
+    });
+  }
+
+  // 6. الوكيل يلخص ويبني القرار
+  const finalDecision = scores.overall >= 75 ? 'الاعتماد' : scores.overall >= 60 ? 'المراجعة والتعديل' : 'الرفض';
+  messages.push({
+    speaker: 'ai',
+    name: 'وكيل الذكاء الاصطناعي',
+    avatar: '🤖',
+    color: '#B89AE0',
+    text: `بناءً على مداخلات الخبراء البشريين وتحليلي الكمي، أقترح قراراً توافقياً: <strong>${finalDecision}</strong>. المعدل المرجح (40% هوية ثقافية + 35% جهد ذهني + 25% محاكاة) يعطي ${scores.overall}/100. ${scores.overall >= 75 ? 'جميع المحاور تجاوزت الحد الأدنى المقبول.' : scores.overall >= 60 ? 'بعض المحاور تحتاج تحسيناً قبل النشر النهائي.' : 'المحاور الرئيسية تحت الحد المقبول، مما يستوجب الرفض أو إعادة التصميم.'}`
+  });
+
+  // 7. خبير يوافق
+  const finalReviewer = reviewers.cultural || reviewers.cognitive || reviewers.simulation;
+  if (finalReviewer) {
+    messages.push({
+      speaker: 'human',
+      name: finalReviewer.الاسم,
+      specialty: finalReviewer.التخصص,
+      avatar: finalReviewer.الاسم.charAt(0),
+      color: finalReviewer === reviewers.cultural ? '#C9A84C' : finalReviewer === reviewers.cognitive ? '#7FC6DD' : '#D4956A',
+      text: `أوافق على القرار التوافقي. التعاون بين الخبرة البشرية والذكاء الاصطناعي أنتج تقييماً شاملاً ومتوازناً. القرار النهائي: <strong>${report.التقييم_النهائي.الحالة}</strong>.`
+    });
+  }
+
+  return messages;
+}
+
+// توليد رسالة نقاش واحدة
+function generateDiscussionMessage(msg) {
+  const isAI = msg.speaker === 'ai';
+  const bgColor = isAI ? 'rgba(184,154,224,.08)' : `rgba(${msg.color === '#C9A84C' ? '201,168,76' : msg.color === '#7FC6DD' ? '127,198,221' : '212,149,106'},.08)`;
+  const borderColor = isAI ? 'rgba(184,154,224,.25)' : msg.color;
+  
+  return `
+    <div style="background:${bgColor};border-right:4px solid ${borderColor};padding:1rem 1.25rem;border-radius:var(--r-md)">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+        <div style="width:40px;height:40px;border-radius:50%;background:${isAI ? 'linear-gradient(135deg,#7FC6DD,#B89AE0)' : msg.color};display:flex;align-items:center;justify-content:center;font-size:${isAI ? '1.4rem' : '1.2rem'};font-weight:700;color:#0D1B2A">
+          ${msg.avatar}
+        </div>
+        <div>
+          <div style="font-size:.95rem;font-weight:700;color:${msg.color}">${escHtml(msg.name)}</div>
+          ${msg.specialty ? `<div style="font-size:.75rem;color:rgba(245,240,232,.45)">${escHtml(msg.specialty)}</div>` : ''}
+        </div>
+      </div>
+      <div style="font-size:.88rem;color:rgba(245,240,232,.8);line-height:1.7">
+        ${msg.text}
+      </div>
+    </div>
+  `;
+}
+
+/* ══════════════════════
+   DISCUSSION FORUM
+══════════════════════ */
 function renderDiscussion() {
   const list = document.getElementById('threadsList');
   const counter = document.getElementById('threadCount');
@@ -3718,6 +4587,113 @@ function openGateRegister() {
     users.unshift({ email: ADMIN_EMAIL, password: ADMIN_PASS, name: 'أ.د بن جلول مختار', role: 'admin' });
     localStorage.setItem('iconoped_users', JSON.stringify(users));
   }
+})();
+
+// Seed expert reviewers
+(function seedExperts() {
+  const SEED_KEY = 'iconoped_experts_seeded_v1';
+  if (localStorage.getItem(SEED_KEY)) return;
+
+  const expertProfiles = [
+    {
+      email: 'samira.kaddour@univ-alger.dz',
+      password: 'expert1234',
+      name: 'د. سميرة قدور',
+      role: 'expert',
+      specialty: 'السيميولوجيا البصرية',
+      degree: 'دكتوراه',
+      experience: 12,
+      institution: 'جامعة الجزائر 2',
+      fields: 'الهوية الثقافية، تحليل الرموز البصرية، الأيقونوغرافيا العربية'
+    },
+    {
+      email: 'rachid.benali@ens-oran.dz',
+      password: 'expert1234',
+      name: 'أ.د رشيد بن علي',
+      role: 'expert',
+      specialty: 'علوم التربية',
+      degree: 'دكتوراه',
+      experience: 18,
+      institution: 'المدرسة العليا للأساتذة - وهران',
+      fields: 'الجهد الذهني، الحمل المعرفي، التصميم التعليمي'
+    },
+    {
+      email: 'leila.mansour@univ-constantine.dz',
+      password: 'expert1234',
+      name: 'د. ليلى منصور',
+      role: 'expert',
+      specialty: 'علم النفس المعرفي',
+      degree: 'دكتوراه',
+      experience: 10,
+      institution: 'جامعة قسنطينة 3',
+      fields: 'الجهد الذهني، نظرية الحمل المعرفي، الإدراك البصري'
+    },
+    {
+      email: 'karim.meziane@univ-annaba.dz',
+      password: 'expert1234',
+      name: 'د. كريم مزيان',
+      role: 'expert',
+      specialty: 'تكنولوجيا التعليم',
+      degree: 'دكتوراه',
+      experience: 8,
+      institution: 'جامعة عنابة',
+      fields: 'المحاكاة الزائفة، الواقعية التعليمية، الوسائط المتعددة'
+    },
+    {
+      email: 'nadia.brahimi@univ-setif.dz',
+      password: 'expert1234',
+      name: 'أ. نادية براهيمي',
+      role: 'expert',
+      specialty: 'اللسانيات التطبيقية',
+      degree: 'ماجستر / ماستر',
+      experience: 6,
+      institution: 'جامعة سطيف 2',
+      fields: 'الهوية الثقافية، اللغة والهوية، التواصل البصري'
+    },
+    {
+      email: 'youcef.cherif@univ-tlemcen.dz',
+      password: 'expert1234',
+      name: 'د. يوسف شريف',
+      role: 'expert',
+      specialty: 'التصميم التعليمي',
+      degree: 'دكتوراه',
+      experience: 14,
+      institution: 'جامعة تلمسان',
+      fields: 'الهوية الثقافية، الجهد الذهني، المحاكاة الزائفة'
+    },
+    {
+      email: 'fatima.zohra@cniipdtice.dz',
+      password: 'expert1234',
+      name: 'أ.د فاطمة الزهراء عمروش',
+      role: 'expert',
+      specialty: 'علوم التربية',
+      degree: 'دكتوراه',
+      experience: 20,
+      institution: 'المركز الوطني لإدماج تكنولوجيا الإعلام والاتصال في التعليم',
+      fields: 'الهوية الثقافية، الجهد الذهني، تقييم الوسائط التعليمية'
+    },
+    {
+      email: 'mohamed.amara@univ-batna.dz',
+      password: 'expert1234',
+      name: 'د. محمد عمارة',
+      role: 'expert',
+      specialty: 'السيميولوجيا البصرية',
+      degree: 'دكتوراه',
+      experience: 9,
+      institution: 'جامعة باتنة 1',
+      fields: 'المحاكاة الزائفة، السيميوطيقا، تحليل الخطاب البصري'
+    }
+  ];
+
+  const users = JSON.parse(localStorage.getItem('iconoped_users') || '[]');
+  expertProfiles.forEach(expert => {
+    const existing = users.find(u => u.email === expert.email);
+    if (!existing) {
+      users.push(expert);
+    }
+  });
+  localStorage.setItem('iconoped_users', JSON.stringify(users));
+  localStorage.setItem(SEED_KEY, '1');
 })();
 
 // Seed demo members (one per role) + sample works — preview only
